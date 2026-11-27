@@ -1,0 +1,397 @@
+{
+  "schema": "ov.matlab.stateflow/3",
+  "file": "TargetStateChart.sfx",
+  "charts": [
+    {
+      "schema": "ov.matlab.stateflow/3",
+      "chart": "TargetStateChart",
+      "action_language": "2",
+      "summary": {
+        "states": 12,
+        "functions": 3,
+        "notes": 9,
+        "transitions": 20,
+        "events": 12,
+        "data": 8
+      },
+      "states": [
+        {
+          "name": "Status",
+          "parallel": true,
+          "states": [
+            {
+              "name": "Disconnected",
+              "entry": "if disconnectEV_\n    disconnectEV_ = false;\n    notify(tg_, 'Disconnected');\nend"
+            },
+            {
+              "name": "Connected",
+              "exit": "notify(tg_, 'Disconnecting');\ntg_.disconnectTarget();",
+              "states": [
+                {
+                  "name": "Unloaded",
+                  "entry": "EnterUnloadedState();"
+                },
+                {
+                  "name": "Loading",
+                  "entry": "if loadingEV_\n    loadingEV_ = false;\n    notify(tg_, 'Loading');\nend"
+                },
+                {
+                  "name": "PostStop",
+                  "entry": "tg_.postStop();"
+                },
+                {
+                  "name": "PostLoad",
+                  "entry": "tg_.postLoad();"
+                },
+                {
+                  "name": "Loaded",
+                  "exit": "tg_.xcpDisconnect();",
+                  "states": [
+                    {
+                      "name": "NotRunning",
+                      "entry": "EnterNotRunningState();"
+                    },
+                    {
+                      "name": "Starting",
+                      "entry": "notify(tg_, 'Starting');\ntg_.xcpStartMeasurement();"
+                    },
+                    {
+                      "name": "PostStart",
+                      "entry": "tg_.postStart();"
+                    },
+                    {
+                      "name": "Running",
+                      "entry": "EnterRunningState();"
+                    }
+                  ],
+                  "transitions": [
+                    {
+                      "to": "PostStart",
+                      "order": "1",
+                      "via": [
+                        {
+                          "condition": "runningOnConnect_",
+                          "condition_action": "runningOnConnect_ = false;\ntg_.xcpStartMeasurement();",
+                          "order": "1"
+                        }
+                      ],
+                      "initial": true
+                    },
+                    {
+                      "to": "NotRunning",
+                      "order": "1",
+                      "via": [
+                        {
+                          "order": "2"
+                        }
+                      ],
+                      "initial": true
+                    },
+                    {
+                      "from": "NotRunning",
+                      "to": "PostStart",
+                      "event": "started",
+                      "condition_action": "tg_.xcpStartMeasurement();",
+                      "order": "2"
+                    },
+                    {
+                      "from": "NotRunning",
+                      "to": "Starting",
+                      "event": "starting",
+                      "order": "1"
+                    },
+                    {
+                      "from": "Starting",
+                      "to": "NotRunning",
+                      "event": "startFailed",
+                      "condition_action": "startFailedEV_ = true;",
+                      "order": "2"
+                    },
+                    {
+                      "from": "Starting",
+                      "to": "PostStart",
+                      "event": "started",
+                      "order": "1"
+                    },
+                    {
+                      "from": "PostStart",
+                      "to": "Running",
+                      "event": "startInitialized",
+                      "order": "1"
+                    }
+                  ],
+                  "notes": [
+                    "% Path taken when user executes\n% tg.connect and target computer\n% is loaded but not running",
+                    "% Path taken when user\n% executes tg.start",
+                    "% Path taken when user executes\n% 'start' from target computer\n% i.e. 'slrealtime start'",
+                    "% Path taken when user executes\n% tg.connect and target computer\n% is loaded and running"
+                  ]
+                }
+              ],
+              "transitions": [
+                {
+                  "to": "PostLoad",
+                  "condition_action": "loadedOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.LOADED);\nrunningOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.RUNNING);\nconnectInProgress_ = true;",
+                  "order": "1",
+                  "via": [
+                    {
+                      "condition": "loadedOnConnect_ || ...\nrunningOnConnect_",
+                      "condition_action": "loadedOnConnect_ = false;",
+                      "order": "1"
+                    }
+                  ],
+                  "initial": true
+                },
+                {
+                  "to": "Unloaded",
+                  "condition_action": "loadedOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.LOADED);\nrunningOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.RUNNING);\nconnectInProgress_ = true;",
+                  "order": "1",
+                  "via": [
+                    {
+                      "order": "2"
+                    }
+                  ],
+                  "initial": true
+                },
+                {
+                  "from": "Unloaded",
+                  "to": "PostLoad",
+                  "event": "loaded",
+                  "order": "2"
+                },
+                {
+                  "from": "Unloaded",
+                  "to": "Loading",
+                  "event": "loading",
+                  "condition_action": "loadingEV_ = true;",
+                  "order": "1"
+                },
+                {
+                  "from": "Loading",
+                  "to": "Unloaded",
+                  "event": "loadFailed",
+                  "condition_action": "loadFailedEV_ = true;",
+                  "order": "2"
+                },
+                {
+                  "from": "PostStop",
+                  "to": "Unloaded",
+                  "event": "stopFinalized",
+                  "order": "1"
+                },
+                {
+                  "from": "Loading",
+                  "to": "Loading",
+                  "condition_action": "tg_.warnIfBusy();",
+                  "order": "3"
+                },
+                {
+                  "from": "Loading",
+                  "to": "PostLoad",
+                  "event": "loaded",
+                  "order": "1"
+                },
+                {
+                  "from": "PostLoad",
+                  "to": "Loaded",
+                  "event": "loadInitialized",
+                  "order": "1"
+                },
+                {
+                  "from": "Loaded",
+                  "to": "PostStop",
+                  "event": "stopped",
+                  "order": "1"
+                }
+              ],
+              "notes": [
+                "% Path taken when user executes\n% tg.connect and target computer\n% is not loaded",
+                "% Path taken when user executes\n% 'load' from target computer\n% i.e. 'slrealtime load'",
+                "% Path taken when:\n% 1) user executes tg.stop\n% 2) user executes 'stop'\n% from target computer\n% i.e. 'slrealtime stop'\n% 3) application stop time\n% is reached",
+                "% Path taken when user\n% executes tg.load",
+                "% Path taken when user executes\n% tg.connect and target computer\n% is loaded"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "to": "Disconnected",
+              "order": "1",
+              "initial": true
+            },
+            {
+              "from": "Disconnected",
+              "to": "Connected",
+              "event": "connected",
+              "order": "1"
+            },
+            {
+              "from": "Connected",
+              "to": "Disconnected",
+              "event": "disconnect",
+              "condition_action": "disconnectEV_ = true;",
+              "order": "1"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "EnterUnloadedState",
+          "kind": "matlab",
+          "signature": "EnterUnloadedState",
+          "notifies": [
+            "Connected",
+            "LoadFailed",
+            "Stopped",
+            "PostStopped"
+          ],
+          "body": "% The 'Unloaded' state may be reached by:\n    %   1) tg.connect when target computer is not loaded\n    %   2) tg.stop\n    %   3) slrealtime stop\n    %   4) tg.load when the load fails\n    %\n    % 1) fires the 'Connected' event because the user reached this state\n    % by executing a connect action and the target computer happened to be\n    % not loaded.  In this case, the user only expects to see a 'Connected'\n    % event because that is the action they initiated.\n    %\n    % 2) and 3) fire the 'Stopped' event because the user reached this\n    % state by explicitly executing a stop action, either from the tg\n    % object or the target computer shell.\n    %\n    % 4) fires the 'LoadFailed' event because the user reached this state\n    % by executing a load action from the target object, but the load\n    % failed.\n    %\n   if connectInProgress_\n        connectInProgress_ = false;\n        notify(tg_, 'Connected');\n\n   elseif loadFailedEV_\n        loadFailedEV_ = false;\n        notify(tg_, 'LoadFailed');\n\n   else\n        notify(tg_, 'Stopped');\n\n        % Reload the application if 'ReloadOnStop' was specified in the\n        % previous tg.start command.  The Stop Time used by the simulation\n        % must be set after the application is re-loaded because it might\n        % be different from what the application has saved.\n        % \n        % Do not reload the application if an error occurs in the previous\n        % run.\n        %\n        stopProps = tg_.get('StopProperties');\n        if (stopProps.ReloadOnStop) && ...\n                ~isequal(tg_.ModelStatus.State, slrealtime.ModelState.MODEL_ERROR)\n            tc = tg_.get('tc');\n            tg_.set('ReloadOnStop_StopTime', tc.ModelProperties.StopTime);\n            try\n                tg_.load(tc.ModelProperties.Application, ...\n                    'AsynchronousLoad', true, 'SkipInstall', true);\n            catch\n                stoppedCleanup(tg_);\n            end\n        else\n            tg_.set('ReloadOnStop_StopTime', []);\n        end\n\n        stoppedCleanup(tg_);\n   end\nend\n\nfunction stoppedCleanup(tg)\n    % tg_.load might throw an error\n    % This code must execute to unblock UIs waiting for PostStopped\n\n    % Clear out these properties set by the tg.start command\n    tg.set('StopProperties', slrealtime.internal.TargetStopProperties);\n\n    notify(tg, 'PostStopped');\nend"
+        },
+        {
+          "name": "EnterNotRunningState",
+          "kind": "matlab",
+          "signature": "EnterNotRunningState",
+          "notifies": [
+            "Connected",
+            "StartFailed",
+            "Loaded",
+            "PostLoaded"
+          ],
+          "body": "% The 'NotRunning' state may be reached by:\n    %   1) tg.connect when target computer is loaded but not running\n    %   2) tg.load\n    %   3) slrealtime load\n    %   4) tg.start when the start fails\n    %\n    % 1) fires the 'Connected' event because the user reached this state\n    % by executing a connect action and the target computer happened to be\n    % loaded but not running.  In this case, the user only expects to see\n    % a 'Connected' event because that is the action they initiated.\n    %\n    % 2) and 3) fire the 'Loaded' event because the user reached this state\n    % by explicitly executing a load action, either from the tg object or\n    % the target computer shell.\n    %\n    % 4) fires the 'StartFailed' event because the user reached this state\n    % by executing a start action from the target object, but the start\n    % failed.\n    %\n    if connectInProgress_\n        connectInProgress_ = false;\n        notify(tg_, 'Connected');\n\n    elseif startFailedEV_\n        startFailedEV_ = false;\n        notify(tg_, 'StartFailed');\n\n    else\n        % Set the correct stop time if this application was loaded by a\n        % ReloadOnStop argument passed into the previous start command.\n        %\n        % tg.ModelProperties.StopTime will not show the new stop time if\n        % checked from a user (or Explorer) 'Loaded' event callback because\n        % the TargetControl object cannot write the stop time into\n        % ModelProperties while in this 'ModelState' callback.  Therefore,\n        % the new stop time is passed into 'Loaded' callbacks using event\n        % data.\n        %\n        reloadOnStop_StopTime = tg_.get('ReloadOnStop_StopTime');\n        if ~isempty(reloadOnStop_StopTime)\n            % clear out the property after use\n            tg_.set('ReloadOnStop_StopTime', []);\n            tg_.setStopTime(reloadOnStop_StopTime);\n            stoptime = reloadOnStop_StopTime;\n            isReloadOnStop = true;\n        else\n            stoptime = tg_.ModelStatus.StopTime;\n            isReloadOnStop = false;\n        end\n\n        notify(tg_, 'Loaded', slrealtime.events.TargetLoadedData(stoptime,isReloadOnStop));\n        notify(tg_, 'PostLoaded');\n    end\nend"
+        },
+        {
+          "name": "EnterRunningState",
+          "kind": "matlab",
+          "signature": "EnterRunningState",
+          "notifies": [
+            "Connected",
+            "Started",
+            "PostStarted"
+          ],
+          "body": "% The 'Running' state may be reached by:\n    %   1) tg.connect when target computer is loaded and running\n    %   2) tg.start\n    %   3) slrealtime start\n    %\n    % 1) fires the 'Connected' event because the user reached this state\n    % by executing a connect action and the target computer happened to be\n    % loaded and running.  In this case, the user only expects to see a\n    % 'Connected' event because that is the action they initiated.\n    %\n    % 2) and 3) fire the 'Started' event because the user reached this\n    % state by explicitly executing a start action, either from the tg\n    % object or the target computer shell.\n    %\n    if connectInProgress_\n        connectInProgress_ = false;\n        notify(tg_, 'Connected');\n\n    else\n        notify(tg_, 'Started');\n        notify(tg_, 'PostStarted');\n    end\nend"
+        }
+      ],
+      "data": [
+        {
+          "name": "tg_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1"
+        },
+        {
+          "name": "disconnectEV_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "loadFailedEV_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "startFailedEV_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "loadingEV_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "connectInProgress_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "loadedOnConnect_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        },
+        {
+          "name": "runningOnConnect_",
+          "scope": "LOCAL_DATA",
+          "type": "Inherit: From definition in chart",
+          "size": "-1",
+          "initial_value": "false"
+        }
+      ],
+      "events": [
+        {
+          "name": "connected",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT",
+          "tag": "SlowDownButton_ButtonPushedFcn"
+        },
+        {
+          "name": "disconnect",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "started",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "stopped",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "loadFailed",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "loaded",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "loading",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "starting",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "startFailed",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "loadInitialized",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "startInitialized",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        },
+        {
+          "name": "stopFinalized",
+          "scope": "INPUT_EVENT",
+          "trigger": "FUNCTION_CALL_EVENT"
+        }
+      ]
+    }
+  ]
+}
