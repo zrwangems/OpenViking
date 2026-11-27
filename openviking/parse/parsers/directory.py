@@ -97,13 +97,6 @@ def _get_understanding_limiter(max_concurrent: int) -> asyncio.Semaphore:
     return limiter
 
 
-_MATLAB_PASSTHROUGH = {
-    ".m", ".ssc", ".tlc", ".c", ".h", ".cpp", ".hpp", ".mk", ".bat", ".rsp",
-    ".map", ".html", ".prj", ".asv", ".xml", ".json", ".yaml", ".yml", ".csv",
-    ".txt", ".ini", ".arxml", ".dbc", ".ldf", ".a2l", ".md", ".xlsx",
-}
-
-
 class DirectoryParser(BaseParser):
     """
     Parser for local directories.
@@ -270,6 +263,8 @@ class DirectoryParser(BaseParser):
                 if kwargs.get("parser_api_config") is not None
                 else {}
             )
+            from openviking.parse.parsers.matlab.classification import SUMMARY_PARSE
+
             for index, cf in enumerate(processable_files):
                 entry = entry_map.get(cf.path)
                 remote = entry is not None and entry.kind == "url"
@@ -285,9 +280,9 @@ class DirectoryParser(BaseParser):
                 )
                 use_understanding = bool(split_content and configured_for_understanding)
                 native_parser = None if use_understanding else self._assign_parser(cf, registry)
-                if scan_result.matlab_project and Path(cf.path).suffix.lower() in _MATLAB_PASSTHROUGH:
-                    # Plan: these formats are stored as the original file, not as
-                    # parser-generated Markdown/JSON pages.
+                if scan_result.matlab_project and cf.summary and cf.summary != SUMMARY_PARSE:
+                    # The classification table owns the summary strategy: these
+                    # files are stored as the original bytes, not as parsed pages.
                     native_parser = None
                     use_understanding = False
                 file_parser = parser_router if use_understanding else native_parser
@@ -558,7 +553,10 @@ class DirectoryParser(BaseParser):
                 warnings=warnings,
             )
             if scan_result.matlab_project and writer is not None:
-                from openviking.parse.parsers.matlab.classification import summarize
+                from openviking.parse.parsers.matlab.classification import (
+                    project_table,
+                    summarize,
+                )
 
                 labeled = [
                     {
@@ -568,17 +566,38 @@ class DirectoryParser(BaseParser):
                         "tags": item.tags,
                         "location": item.location,
                         "action": item.action,
+                        "summary": item.summary,
                     }
                     for item in scan_result.processable
                     if item.categories
                 ]
                 summary = summarize(labeled)
+                # Project state (.prj and resources/project) is not imported, so
+                # its record lives here: one row per project and file.
+                projects = project_table(
+                    (item.rel_path, item.path) for item in scan_result.aggregated
+                )
+                duplicates = [
+                    {
+                        "path": item.rel_path,
+                        "location": item.location,
+                        "action": item.action,
+                        **(
+                            {"redundant_of": item.redundant_of}
+                            if item.redundant_of
+                            else {"duplicate_of": item.duplicate_of}
+                        ),
+                    }
+                    for item in scan_result.duplicates
+                ]
                 await writer.write_text(
                     f"{dir_name}/matlab-classification.json",
                     json.dumps(
                         {
                             "schema": "ov.matlab.classification/1",
                             "summary": summary,
+                            "projects": projects,
+                            "duplicates": duplicates,
                             "files": labeled,
                         },
                         ensure_ascii=False,
@@ -596,6 +615,16 @@ class DirectoryParser(BaseParser):
                     + "\n",
                 )
                 result.meta["matlab_classification"] = summary
+                result.meta["matlab_projects"] = [
+                    {
+                        "root": project["root"],
+                        "prj": project["prj"],
+                        "resources": project["resources"],
+                    }
+                    for project in projects
+                ]
+                result.meta["duplicate_files"] = [item.rel_path for item in scan_result.duplicates]
+                result.meta["total_aggregate"] = len(scan_result.aggregated)
 
             result.temp_dir_path = temp_uri
             result.artifact_ref = await writer.finalize(resource_rel=target_rel)

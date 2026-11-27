@@ -12,6 +12,7 @@ from openviking.parse.parsers.matlab.ignore import (
     detect_build_folders,
     looks_like_matlab_project,
     matlab_ignore_for,
+    project_resources_index,
 )
 
 SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "matlab-ingest-fixture"
@@ -233,9 +234,17 @@ def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
     result = scan_directory(SAMPLE, strict=True)
 
     processable = [entry.rel_path for entry in result.processable]
-    assert len(processable) == 3352
+    duplicates = [entry.rel_path for entry in result.duplicates]
+    # 3425 files: 1147 imported, 73 build/cache skipped, 2204 project state in the
+    # aggregation table (2191 resources + 13 .prj) and 1 repeated .fmu.
+    assert len(processable) == 1147
     assert len(result.skipped_details) == 73
-    assert len(processable) + len(result.skipped_details) == 3425
+    assert len(result.aggregated) == 2204
+    assert duplicates == ["packages/VvcFmuEngExl.fmu"]
+    assert (
+        len(processable) + len(result.skipped_details) + len(result.aggregated) + len(duplicates)
+        == 3425
+    )
     assert not result.unsupported
     assert "src/autoblkscheckparams.p" in processable
     assert "src/detectChangeOrbitalElements.m" in processable
@@ -245,7 +254,12 @@ def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
         "matlab build/cache",
         "matlab derived file",
         "matlab build output",
+        "构建模板副本",
     }
+    # Project state never enters the resource tree.
+    assert "MatlabIngestFixture.prj" not in processable
+    outside_state = processable + [entry["path"] for entry in result.skipped_details]
+    assert not any("resources/project" in path for path in outside_state)
 
 
 def test_skipped_reason_is_reported_as_ignore():
@@ -279,3 +293,11 @@ def test_default_build_folder_names_are_skipped(tmp_path: Path, folder: str):
 
     assert f"{folder}/generated.c" not in [entry.rel_path for entry in result.processable]
     assert any(entry.startswith(f"{folder}/generated.c ") for entry in result.skipped)
+
+
+def test_project_resources_state_is_recognised():
+    state = ("resources", "project", "hash", "file.xml")
+    assert project_resources_index(state) == 0
+    assert project_resources_index(("model", "SI") + state) == 2
+    assert project_resources_index(("resources", "notes.md")) is None
+    assert project_resources_index(("src", "controller.m")) is None

@@ -26,6 +26,8 @@ logger = get_logger(__name__)
 # File classification labels
 CLASS_PROCESSABLE = "processable"
 CLASS_UNSUPPORTED = "unsupported"
+CLASS_AGGREGATE = "aggregate"
+CLASS_DUPLICATE = "duplicate"
 
 # Reason recorded for MATLAB/Simulink build and cache artifacts that are skipped.
 MATLAB_BUILD_REASON = "matlab build/cache"
@@ -37,11 +39,14 @@ class ClassifiedFile:
 
     path: Path
     rel_path: str
-    classification: str  # CLASS_PROCESSABLE | CLASS_UNSUPPORTED
+    classification: str  # CLASS_PROCESSABLE | CLASS_UNSUPPORTED | CLASS_AGGREGATE | CLASS_DUPLICATE
     categories: List[str] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
     location: str = ""
     action: str = ""
+    summary: str = ""
+    redundant_of: str = ""
+    duplicate_of: str = ""
 
 
 @dataclass
@@ -53,6 +58,8 @@ class DirectoryScanResult:
     unsupported: List[ClassifiedFile] = field(default_factory=list)
     skipped: List[str] = field(default_factory=list)  # reason -> count or paths for debugging
     skipped_details: List[dict] = field(default_factory=list)
+    aggregated: List[ClassifiedFile] = field(default_factory=list)
+    duplicates: List[ClassifiedFile] = field(default_factory=list)
     matlab_project: bool = False
     warnings: List[str] = field(default_factory=list)
 
@@ -196,6 +203,54 @@ def _classify_file(
     return CLASS_UNSUPPORTED
 
 
+def _matlab_aggregated(file_path: Path, rel_path: str, labels: dict) -> ClassifiedFile:
+    """Build the aggregation-table entry for one MATLAB project-state file."""
+    return ClassifiedFile(
+        path=file_path,
+        rel_path=rel_path,
+        classification=CLASS_AGGREGATE,
+        categories=list(labels.get("categories", [])),
+        tags=list(labels.get("tags", [])),
+        location=str(labels.get("location", "")),
+        action=str(labels.get("action", "")),
+        summary=str(labels.get("summary", "")),
+    )
+
+
+def _matlab_redundancy(root: Path, processable: List[ClassifiedFile]) -> List[ClassifiedFile]:
+    """Move generated exports and repeated package bytes out of *processable*.
+
+    A ``.png``/``.html``/``.csv`` that a ``.fig``/script/``.mat`` in the same
+    folder generates is redundant; a package (``.fmu`` and friends) that repeats
+    another copy, or a model of the same name, is a duplicate. Both are recorded
+    with the file that supersedes them. Screenshots that only look redundant stay
+    in the import and carry the ``possible_redundant`` tag.
+    """
+    from openviking.parse.parsers.matlab.classification import (
+        TAG_POSSIBLE_REDUNDANT,
+        resolve_redundancy,
+    )
+
+    redundancy = resolve_redundancy(root, [item.rel_path for item in processable])
+    kept: List[ClassifiedFile] = []
+    removed: List[ClassifiedFile] = []
+    for item in processable:
+        source = redundancy.redundant.get(item.rel_path)
+        keeper = redundancy.duplicates.get(item.rel_path)
+        if source or keeper:
+            item.classification = CLASS_DUPLICATE
+            item.redundant_of = source or ""
+            item.duplicate_of = keeper or ""
+            removed.append(item)
+            continue
+        hint = redundancy.possible.get(item.rel_path)
+        if hint and TAG_POSSIBLE_REDUNDANT not in item.tags:
+            item.tags.append(TAG_POSSIBLE_REDUNDANT)
+        kept.append(item)
+    processable[:] = kept
+    return removed
+
+
 def scan_directory(
     root: Union[str, Path],
     registry: Optional[ParserRegistry] = None,
@@ -337,9 +392,7 @@ def scan_directory(
                     for generated in sorted(sub.rglob("*")):
                         if not generated.is_file():
                             continue
-                        generated_rel = _normalize_rel_path(
-                            str(generated.relative_to(root))
-                        )
+                        generated_rel = _normalize_rel_path(str(generated.relative_to(root)))
                         labels = classify_path(generated_rel)
                         result.skipped.append(f"{generated_rel} ({MATLAB_BUILD_REASON})")
                         result.skipped_details.append(labels)
@@ -368,7 +421,13 @@ def scan_directory(
                 continue
             labels = None
             if matlab_project:
-                from openviking.parse.parsers.matlab.classification import classify_path
+                from openviking.parse.parsers.matlab.classification import (
+                    ACTION_AGGREGATE,
+                    ACTION_ATTACH,
+                    ACTION_EXCLUDE,
+                    ACTION_IMPORT,
+                    classify_path,
+                )
 
                 labels = classify_path(rel_path_norm)
             if matlab_ignore and matlab_ignore.is_derived_file(file_path):
@@ -377,9 +436,14 @@ def scan_directory(
                     labels["reason"] = MATLAB_BUILD_REASON
                     result.skipped_details.append(labels)
                 continue
-            if labels is not None and labels["action"] == "exclude":
+            if labels is not None and labels["action"] == ACTION_EXCLUDE:
                 result.skipped.append(f"{rel_path_norm} ({MATLAB_BUILD_REASON})")
                 result.skipped_details.append(labels)
+                continue
+            if labels is not None and labels["action"] == ACTION_AGGREGATE:
+                # Project state stays out of the resource tree but is recorded in
+                # the aggregation table, so nothing disappears without a trace.
+                result.aggregated.append(_matlab_aggregated(file_path, rel_path_norm, labels))
                 continue
 
             if include_patterns and not _matches_include(name, include_patterns):
@@ -404,16 +468,10 @@ def scan_directory(
                 if accepted_by_additional_parser
                 else _classify_file(file_path, effective_registry)
             )
-            if labels is not None and labels["action"] == "attach":
-                classification = CLASS_PROCESSABLE
-            # MATLAB projects contain text formats that the global text
-            # allowlist does not know (.arxml/.dbc/.ldf/.a2l/.rsp/.map).
-            # The classification table is authoritative for project files.
-            if (
-                labels is not None
-                and labels["action"] == "import"
-                and "可读文本" in labels["categories"]
-            ):
+            if labels is not None and labels["action"] in (ACTION_ATTACH, ACTION_IMPORT):
+                # The table is authoritative for project files: apart from the
+                # build/cache rule, an entry is kept as a page or as its original
+                # bytes, never dropped for being unknown to the global allowlist.
                 classification = CLASS_PROCESSABLE
             classified = ClassifiedFile(
                 path=file_path,
@@ -423,11 +481,15 @@ def scan_directory(
                 tags=list(labels["tags"]) if labels else [],
                 location=str(labels["location"]) if labels else "",
                 action=str(labels["action"]) if labels else "",
+                summary=str(labels.get("summary", "")) if labels else "",
             )
             if classification == CLASS_PROCESSABLE:
                 result.processable.append(classified)
             else:
                 result.unsupported.append(classified)
+
+    if matlab_project:
+        result.duplicates.extend(_matlab_redundancy(root, result.processable))
 
     if result.unsupported:
         unsupported_paths = [f.rel_path for f in result.unsupported]
@@ -444,6 +506,8 @@ def scan_directory(
 
     result.processable.sort(key=lambda x: x.rel_path)
     result.unsupported.sort(key=lambda x: x.rel_path)
+    result.aggregated.sort(key=lambda x: x.rel_path)
+    result.duplicates.sort(key=lambda x: x.rel_path)
     result.skipped.sort()
     result.skipped_details.sort(key=lambda item: item.get("path", ""))
     result.matlab_project = matlab_project

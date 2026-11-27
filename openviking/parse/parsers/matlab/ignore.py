@@ -54,6 +54,12 @@ PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
 DEFAULT_DERIVED_FILE_GLOBS = ("*.slxc", "*.autosave")
 PROJECT_DERIVED_FILE_GLOBS: tuple[str, ...] = ()
 
+# MATLAB keeps per-project file state (categories, target paths, digests) in
+# ``<project>/resources/project/<hash>/*.xml``. Thousands of tiny XML files
+# describe bookkeeping, not knowledge, so they are aggregated, never imported.
+PROJECT_RESOURCES_DIR = "resources"
+PROJECT_RESOURCES_STATE_DIR = "project"
+
 # Files that make an arbitrary directory a MATLAB/Simulink project. ``.m`` and
 # ``.mat`` alone are ambiguous (Objective-C, generic binary data), so only
 # model, dictionary, Live Script and project formats count.
@@ -204,6 +210,19 @@ def _is_build_name(name: str) -> bool:
     if folded in DEFAULT_BUILD_DIR_NAMES or folded in PROJECT_BUILD_DIR_NAMES:
         return True
     return any(fnmatch.fnmatch(folded, pattern) for pattern in DEFAULT_BUILD_DIR_GLOBS)
+
+
+def project_resources_index(rel_parts: Sequence[str]) -> Optional[int]:
+    """Index of the ``resources`` part when it is followed by ``project``.
+
+    The index also names the project root: the parts before it. ``None`` means
+    the path is not project state and is classified by its own category.
+    """
+    lowered = [part.casefold() for part in rel_parts]
+    for index, part in enumerate(lowered[:-1]):
+        if part == PROJECT_RESOURCES_DIR and lowered[index + 1] == PROJECT_RESOURCES_STATE_DIR:
+            return index
+    return None
 
 
 def _relative_parts(path: Path, root: Path) -> Tuple[str, ...]:
