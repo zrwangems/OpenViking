@@ -233,9 +233,9 @@ def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
     result = scan_directory(SAMPLE, strict=True)
 
     processable = [entry.rel_path for entry in result.processable]
-    assert len(processable) == 2644
+    assert len(processable) == 3352
     assert len(result.skipped_details) == 73
-    assert len(processable) + len(result.skipped_details) == 2717
+    assert len(processable) + len(result.skipped_details) == 3425
     assert not result.unsupported
     assert "src/autoblkscheckparams.p" in processable
     assert "src/detectChangeOrbitalElements.m" in processable

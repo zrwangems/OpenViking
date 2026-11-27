@@ -64,12 +64,19 @@ _NATIVE_BINARY_SUFFIXES = {
 _MEASUREMENT_BINARY_SUFFIXES = {".mdf", ".mf4", ".blf"}
 _PRESERVED_CONTAINER_SUFFIXES = {".jar", ".ctf"}
 _PACKAGE_MANIFEST_SUFFIXES = {
-    ".mlpkginstall",
     ".sltx",
     ".mlproj",
     ".mltbx",
-    ".mlappinstall",
     ".fmu",
+}
+# Sources whose bytes are the only useful output. Installers, p-code and
+# platform binaries are imported as the original file itself: no wrapper
+# folder and no manifest/metadata sidecar. L0/L1 decides what the file is for.
+_ORIGINAL_ONLY_SUFFIXES = {
+    ".p",
+    ".mlappinstall",
+    ".mlpkginstall",
+    *_NATIVE_BINARY_SUFFIXES,
 }
 
 
@@ -86,9 +93,7 @@ _FOLDER_SUFFIXES = {
     ".blf",
     ".mlproj",
     ".mltbx",
-    ".mlappinstall",
     ".sltx",
-    ".mlpkginstall",
     ".slreqx",
     ".slmx",
     ".mldatx",
@@ -96,11 +101,9 @@ _FOLDER_SUFFIXES = {
     ".fmu",
     ".ctf",
     ".jar",
-    ".p",
     ".slxp",
     ".sscp",
     ".mdlp",
-    *_NATIVE_BINARY_SUFFIXES,
 }
 
 
@@ -174,12 +177,14 @@ class MatlabParser(BaseParser):
         started = time.time()
         output_store = kwargs.pop("parse_output_store", None)
         language = kwargs.get("language", "zh")
+        suffix = path.suffix.lower()
         writer = await create_parse_artifact_writer(
-            output_store, viking_fs=self._get_viking_fs() if output_store is None else None
+            output_store,
+            viking_fs=self._get_viking_fs() if output_store is None else None,
+            root_type="file" if suffix in _ORIGINAL_ONLY_SUFFIXES else "dir",
         )
         warnings: list[str] = []
         try:
-            suffix = path.suffix.lower()
             if suffix == ".slx" or (suffix == ".mdl" and zipfile.is_zipfile(path)):
                 model = await asyncio.to_thread(parse_slx, path)
                 documents = await asyncio.to_thread(system_json_documents, model, language)
@@ -277,20 +282,17 @@ class MatlabParser(BaseParser):
                     **_source_identity(path),
                 }
                 title = path.stem
-            elif suffix == ".p":
-                folder = _output_folder(path)
-                await writer.write_bytes(
-                    f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
-                metadata = await asyncio.to_thread(protected_metadata, path, "pcode")
-                await writer.write_text(
-                    f"{folder}/metadata.json",
-                    json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
-                )
+            elif suffix in _ORIGINAL_ONLY_SUFFIXES:
+                # The source is the resource: import it at the artifact root so
+                # the import yields one file node and nothing else.
+                data = await asyncio.to_thread(path.read_bytes)
+                await writer.write_bytes(path.name, data)
                 meta = {
-                    "matlab_format": "p",
-                    "parse_status": "opaque",
+                    "matlab_format": suffix.removeprefix("."),
+                    "parse_status": "original-only",
                     "original_preserved": True,
+                    "source_bytes": len(data),
+                    "source_sha256": hashlib.sha256(data).hexdigest(),
                 }
                 title = path.stem
             elif suffix in {".sldd", ".mlx", ".fig", ".mldatx", ".slreqx", ".slmx", ".mlapp"}:
@@ -545,7 +547,9 @@ class MatlabParser(BaseParser):
                 meta=meta,
                 warnings=warnings,
             )
-            result.artifact_ref = await writer.finalize()
+            result.artifact_ref = await writer.finalize(
+                resource_rel=path.name if suffix in _ORIGINAL_ONLY_SUFFIXES else ""
+            )
             result.temp_dir_path = result.artifact_ref.root
             return result
         except Exception:

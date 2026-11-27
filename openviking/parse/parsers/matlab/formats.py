@@ -47,13 +47,13 @@ _FORMATS = {
     ),
     ".mlappinstall": FormatSpec(
         "MATLAB app installer",
-        "ZIP 包清单与 XML 元数据",
+        "只保留原件，不展开；用途由 L0/L1 判断",
         "https://www.mathworks.com/help/matlab/ref/matlab.apputil.install.html",
         archive=True,
     ),
     ".mlpkginstall": FormatSpec(
         "MATLAB support package installer",
-        "ZIP 包清单与 XML 元数据",
+        "只保留原件，不展开；用途由 L0/L1 判断",
         "https://www.mathworks.com/help/matlab/ref/matlab.addons.install.html",
         archive=True,
     ),

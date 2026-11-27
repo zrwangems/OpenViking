@@ -44,12 +44,12 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 | MATLAB 数据 | `.mat` | 通过 SciPy 读取 v5/v7 数组元数据和有界预览，v7.3 通过 HDF5/h5py 读取；不执行对象 |
 | Live Script / 代码 | `.mlx`, `.m` | MLX 提取正文、标题和代码，M 文件保留完整源码并识别函数声明 |
 | 物理建模 | Simscape `.ssc`, `.sscp` | SSC 保留组件、守恒节点、物理信号和方程原文；受保护的 SSCP 只保留原文件与边界说明。SLX 中 `ConnectionPort`、`PMIOPort` / `lconn` / `rconn` 作为无向守恒网络节点，不混入普通输入输出；有向物理信号由 SSC 的 `inputs` / `outputs` 表达 |
-| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 与组件树，FIG 按 MAT 读取句柄结构，安装包提取 ZIP/XML 清单；已解析的 App 与 FIG 只留解析产物，安装包保留原文件 |
+| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 与组件树，FIG 按 MAT 读取句柄结构；已解析的 App 与 FIG 只留解析产物，`.mlappinstall` 安装包只保留原件，不展开，用途由 L0/L1 判断 |
 | 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | 提取容器清单与 XML 文本；需求集与测试文件只留解析出的需求、链接和结果，工程归档保留原文件；不执行工程任务、需求链接或测试 |
 | 独立 Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | SFX 与 FMU 提取 XML/清单，FMU 的 `modelDescription.xml` 用于接口检索；TLC 保留文本源码，不运行测试、协同仿真或代码生成 |
 | 受保护模型、缓存与备份 | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | 保存原文件、可验证元数据和明确的不可读边界；SLXP 另提取可见容器清单，不伪造模型结构 |
-| MEX 与编辑器备份 | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | MEX 按平台二进制保存，不反汇编或执行；ASV 按 M 文本读取 |
-| MATLAB P-code | `.p` | 原始文件与带 SHA-256 的边界说明一起保存；可参与依赖编译，但不伪造内部逻辑 |
+| MEX 与编辑器备份 | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | MEX 按平台二进制保存为单个文件，不反汇编或执行；ASV 按 M 文本读取 |
+| MATLAB P-code | `.p` | 只保留原始文件，不另写说明；用途由 L0/L1 判断，可参与依赖编译，但不伪造内部逻辑 |
 
 MATLAB 本体的结构也不只按后缀处理：M 文件会区分脚本、函数和 `classdef`，识别 `+package` 命名空间、`@Class` 方法目录、继承声明和 `%%` 代码节；Live Script、App、FIG、MAT、P-code 与 MEX 分别走上述格式路径。Simulink 侧保留 Model Reference、库链接、Mask、Variant Subsystem 与 Variant Source/Sink 实例参数，Stateflow 单独生成状态/转移页，Simscape 使用守恒网络语义。
 

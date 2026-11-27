@@ -533,8 +533,20 @@ async def resolve_artifact_doc_root(
         if entry.name not in {".", "..", ARTIFACT_MANIFEST_NAME}
     ]
     doc_dirs = [e for e in top if e.is_dir]
+    files = [entry for entry in top if not entry.is_dir]
+    if ref.root_type == "file":
+        # A file-rooted artifact holds exactly the source file and nothing else.
+        if len(files) == 1 and not doc_dirs:
+            return ResolvedDocRoot(
+                doc_name=files[0].name,
+                doc_rel=files[0].rel_path,
+                root_is_file=True,
+            )
+        raise ValueError(
+            f"file-rooted artifact {ref.root} must contain exactly 1 file, "
+            f"found {len(files)} file(s) and {len(doc_dirs)} director(y/ies)"
+        )
     if flatten_single_file and not doc_dirs:
-        files = [entry for entry in top if not entry.is_dir]
         if len(files) == 1:
             return ResolvedDocRoot(
                 doc_name=files[0].name,

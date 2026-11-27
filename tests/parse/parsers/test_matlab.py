@@ -12,7 +12,7 @@ from xml.etree.ElementTree import fromstring as ET_fromstring
 
 import pytest
 
-from openviking.parse.output import LocalParseOutputStore
+from openviking.parse.output import LocalParseOutputStore, resolve_artifact_doc_root
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.keydes import KeydesLibrary
@@ -1446,7 +1446,9 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert (base / "src" / "detectChangeOrbitalElements.m").is_file()
     assert not (base / "src" / "detectChangeOrbitalElements.m.md").exists()
     assert list((base / "bin").rglob("*.dll"))
-    assert (base / "bin" / "AddOnInstaller" / "metadata.json").is_file()
+    # Unpackable sources are the file itself: no wrapper folder, no metadata.
+    assert (base / "bin" / "AddOnInstaller.exe").is_file()
+    assert not (base / "bin" / "AddOnInstaller").exists()
     assert (base / "bin" / "ingest_firmware.hex").is_file()
     assert (base / "bin" / "visionzynq-target-eventhandler.elf").is_file()
     assert list((base / "model" / "VirtualVehicle" / "PassVeh" / "Plant").glob("*.STL"))
@@ -1454,17 +1456,18 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert (base / "slprj").exists() is False
     assert (base / "skipped.json").is_file()
     assert (base / "matlab-classification.json").is_file()
-    assert (base / "packages" / "IngestFixtureSupport" / "manifest.json").is_file()
+    # Installer packages keep only the source bytes; no manifest is produced.
+    assert (base / "packages" / "IngestFixtureSupport.mlpkginstall").is_file()
+    assert not (base / "packages" / "IngestFixtureSupport").exists()
+    assert (base / "packages" / "IngestFixtureApp.mlappinstall").is_file()
+    assert not (base / "packages" / "IngestFixtureApp").exists()
     assert (base / "packages" / "asbCubeSatMBSEProject" / "manifest.json").is_file()
 
-    # Opaque P-code keeps the original bytes plus verified metadata.
-    pcode = base / "src" / "autoblkscheckparams" / "autoblkscheckparams.p"
+    # P-code is imported as the original file, with no sidecar.
+    pcode = base / "src" / "autoblkscheckparams.p"
     assert pcode.is_file()
-    metadata = json.loads(
-        (pcode.parent / "metadata.json").read_text(encoding="utf-8")
-    )
-    assert metadata["parse_status"] == "opaque"
-    assert metadata["sha256"]
+    assert pcode.read_bytes() == (SAMPLE / "src" / "autoblkscheckparams.p").read_bytes()
+    assert not (base / "src" / "autoblkscheckparams").exists()
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
     # The fixture grows with each official example corpus that lands in it.
     assert len(sources) > 3000
@@ -1583,12 +1586,47 @@ async def test_legacy_mdl_requirements_and_binary_metadata(tmp_path):
     assert (root / "ACSRequirements" / "links.jsonl").is_file()
 
     mex = SAMPLE / "src" / "componentinfo.mexw64"
-    result = await MatlabParser().parse(
-        mex, parse_output_store=LocalParseOutputStore(tmp_path / "mex")
-    )
+    store = LocalParseOutputStore(tmp_path / "mex")
+    result = await MatlabParser().parse(mex, parse_output_store=store)
     root = Path(result.artifact_ref.root)
-    metadata = json.loads(
-        (root / "componentinfo" / "metadata.json").read_text(encoding="utf-8")
-    )
-    assert metadata["parse_status"] == "opaque"
-    assert (root / "componentinfo" / "componentinfo.mexw64").is_file()
+    assert result.artifact_ref.root_type == "file"
+    assert result.meta["parse_status"] == "original-only"
+    assert (root / "componentinfo.mexw64").read_bytes() == mex.read_bytes()
+    assert sorted(path.name for path in root.iterdir()) == [
+        ".artifact_manifest.json",
+        "componentinfo.mexw64",
+    ]
+
+
+@pytest.mark.asyncio
+async def test_unpackable_and_installer_files_resolve_as_file_nodes(tmp_path):
+    """Only the source file is produced, and it resolves as one flat file node."""
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    cases = [
+        ("src/autoblkscheckparams.p", "autoblkscheckparams.p"),
+        ("src/componentinfo.mexw64", "componentinfo.mexw64"),
+        ("bin/fmu2ProxyWrapper.dll", "fmu2ProxyWrapper.dll"),
+        ("bin/AddOnInstaller.exe", "AddOnInstaller.exe"),
+        ("bin/GecodeDriver.lib", "GecodeDriver.lib"),
+        ("bin/lcccrt0.obj", "lcccrt0.obj"),
+        ("bin/libMatlabCppSharedLib25_2.pdb", "libMatlabCppSharedLib25_2.pdb"),
+        ("packages/IngestFixtureApp.mlappinstall", "IngestFixtureApp.mlappinstall"),
+        ("packages/IngestFixtureSupport.mlpkginstall", "IngestFixtureSupport.mlpkginstall"),
+    ]
+    for rel_path, name in cases:
+        source = SAMPLE / rel_path
+        result = await MatlabParser().parse(source, parse_output_store=store)
+        root = Path(result.artifact_ref.root)
+        assert result.artifact_ref.root_type == "file", rel_path
+        assert result.meta["original_preserved"] is True, rel_path
+        assert result.meta["parse_status"] == "original-only", rel_path
+        entries = sorted(
+            path.name for path in root.iterdir() if path.name != ".artifact_manifest.json"
+        )
+        assert entries == [name], rel_path
+        assert (root / name).read_bytes() == source.read_bytes(), rel_path
+        resolved = await resolve_artifact_doc_root(store, result.artifact_ref)
+        assert resolved.root_is_file is True, rel_path
+        assert resolved.doc_name == name, rel_path
+        assert resolved.doc_rel == name, rel_path
+
