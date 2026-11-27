@@ -7,7 +7,7 @@
       "chart": "TargetStateChart",
       "type": "state chart",
       "parallel": true,
-      "action_language": "2",
+      "action_language": "MATLAB",
       "app": true,
       "summary": {
         "states": 12,
@@ -272,12 +272,24 @@
           "name": "tg_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1"
         },
         {
           "name": "disconnectEV_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -285,6 +297,12 @@
           "name": "loadFailedEV_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -292,6 +310,12 @@
           "name": "startFailedEV_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -299,6 +323,12 @@
           "name": "loadingEV_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -306,6 +336,12 @@
           "name": "connectInProgress_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -313,6 +349,12 @@
           "name": "loadedOnConnect_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         },
@@ -320,6 +362,12 @@
           "name": "runningOnConnect_",
           "scope": "LOCAL_DATA",
           "type": "Inherit: From definition in chart",
+          "props": {
+            "method": "SF_INHERITED_TYPE",
+            "primitive": "SF_DOUBLE_TYPE",
+            "isSigned": "1",
+            "wordLength": "16"
+          },
           "size": "-1",
           "initial_value": "false"
         }
