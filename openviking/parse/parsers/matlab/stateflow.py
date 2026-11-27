@@ -400,10 +400,27 @@ def _container(parents: dict, element, root) -> str:
     return ""
 
 
-def _note_text(label: str) -> str:
-    text = re.sub(r"(?is)<(style|head)\b.*?</\1>", "", label)
-    text = re.sub(r"(?i)<br\s*/?>|</p>", "\n", text)
-    text = re.sub(r"<[^>]+>", "", text)
+#: Stateflow can store a label as Qt rich text: a whole HTML document whose
+#: styling says nothing about the chart. Only the words in it matter.
+_RICH_TEXT = re.compile(
+    r"(?is)<!doctype\s+html|<html\b"
+    r"|</?(?:body|head|style|p|span|div|br|li|ul|ol|table|tr|td|b|i|font)\b"
+)
+
+
+def _label_text(label: str) -> str:
+    """The words of a label, with any rich-text markup and its styling removed.
+
+    Styling is the trap: keeping it puts font names, sizes and colours into a
+    state's name or into the text of a note. An ordinary label never contains
+    markup, so it comes back unchanged, and the ``<`` of a condition stays.
+    """
+    if not label or not _RICH_TEXT.search(label):
+        return label
+    text = re.sub(r"(?is)<!doctype[^>]*>", "", label)
+    text = re.sub(r"(?is)<(style|head)\b.*?</\1>", "", text)
+    text = re.sub(r"(?i)<br\s*/?>|</(?:p|div|li|tr)\s*>", "\n", text)
+    text = re.sub(r"<[^>]*>", "", text)
     lines = (re.sub(r"[ \t]+", " ", line).strip() for line in html.unescape(text).splitlines())
     return "\n".join(line for line in lines if line)
 
@@ -499,7 +516,7 @@ def _parse_chart(root, member: str) -> Chart:
             ports.append(
                 Port(
                     ssid=element.get("SSID") or element.get("id") or "",
-                    name=element_props.get("labelString", ""),
+                    name=_label_text(element_props.get("labelString", "")),
                     state=element_props.get("parent", ""),
                     kind=element_props.get("pType", ""),
                 )
@@ -525,7 +542,7 @@ def _parse_chart(root, member: str) -> Chart:
                 chart.notes.append(
                     Note(
                         ssid=element.get("SSID", ""),
-                        text=_note_text(element_props.get("labelString", "")),
+                        text=_label_text(element_props.get("labelString", "")),
                         parent=parent,
                     )
                 )
@@ -535,7 +552,7 @@ def _parse_chart(root, member: str) -> Chart:
                 chart.states.append(
                     State(
                         ssid=element.get("SSID", ""),
-                        label=element_props.get("labelString", ""),
+                        label=_label_text(element_props.get("labelString", "")),
                         state_type=state_type,
                         decomposition=element_props.get("decomposition", ""),
                         parent=parent,
@@ -555,7 +572,7 @@ def _parse_chart(root, member: str) -> Chart:
                     ssid=element.get("SSID", ""),
                     junction_type=element_props.get("type", ""),
                     parent=parent,
-                    label=element_props.get("labelString", "").strip(),
+                    label=_label_text(element_props.get("labelString", "")).strip(),
                 )
             )
         elif tag == "transition":
@@ -568,7 +585,7 @@ def _parse_chart(root, member: str) -> Chart:
                     destination=destination.text
                     if destination is not None and destination.text
                     else "",
-                    label=element_props.get("labelString", ""),
+                    label=_label_text(element_props.get("labelString", "")),
                     order=element_props.get("executionOrder", "未声明"),
                     scope=parent,
                 )
@@ -641,7 +658,7 @@ def _parse_function(element, element_props: dict[str, str], parent: str) -> Func
         kind = "graphical"
     return Function(
         ssid=element.get("SSID") or element.get("id") or "",
-        label=element_props.get("labelString", ""),
+        label=_label_text(element_props.get("labelString", "")),
         kind=kind,
         parent=parent,
         block=simulink_props.get("blockName", ""),

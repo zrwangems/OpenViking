@@ -8,6 +8,7 @@ import re
 import shutil
 import zipfile
 from pathlib import Path
+from xml.etree.ElementTree import fromstring as ET_fromstring
 
 import pytest
 
@@ -20,6 +21,8 @@ from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.slx import Block, parse_slx, system_json_documents
 from openviking.parse.parsers.matlab.stateflow import (
     STATE_FLOW_SCHEMA,
+    _label_text,
+    _parse_chart,
     chart_json,
     parse_stateflow,
     transition_label,
@@ -552,6 +555,46 @@ bind:
     assert through["action"] == "z = 3;"
     assert through["via"] == [{"condition": "y == 3", "order": "1"}]
     assert not chart.get("junctions")
+
+
+RICH_TEXT_LABEL = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body align="left" style=" font-family:'Helvetica'; font-size:12px; color:#ff0000;">
+<p align="left" style=" margin-top:0px; text-indent:0px;"><span style=" font-size:10px;">Idle </span><span style=" color:#00ff00;">mode</span></p>
+<p align="left" style=" margin-top:0px; text-indent:0px;"><span style=" font-family:'Courier New';">entry: x = 1;</span></p></body></html>"""
+
+
+def test_rich_text_label_keeps_its_words_and_drops_its_styling():
+    text = _label_text(RICH_TEXT_LABEL)
+    assert text == "Idle mode\nentry: x = 1;"
+    # Neither the markup nor the styling it carries reaches the text.
+    for leftover in ("<", ">", "font-family", "font-size", "color", "ff0000", "Helvetica"):
+        assert leftover not in text
+    # An ordinary label has no markup and must come back untouched, condition
+    # signs included.
+    assert _label_text("[a < b]") == "[a < b]"
+    assert _label_text("Idle\nentry:\n x = 1;") == "Idle\nentry:\n x = 1;"
+    assert _label_text("") == ""
+
+
+def test_rich_text_state_label_names_the_state_and_keeps_its_actions():
+    root = ET_fromstring(
+        '<chart SSID="1"><P Name="name">rich</P>'
+        '<state SSID="2"><P Name="type">OR_STATE</P>'
+        '<P Name="labelString" /></state></chart>'
+    )
+    # A doctype cannot sit inside an XML string, so the rich text is attached
+    # to the property directly, exactly as the chart XML carries it.
+    root.find("./state/P[@Name='labelString']").text = RICH_TEXT_LABEL
+    chart = _parse_chart(root, "chart_1.xml")
+    document = chart_json(chart)
+    state = document["states"][0]
+    assert state["name"] == "Idle mode"
+    assert state["entry"] == "x = 1;"
+    assert "ff0000" not in json.dumps(document)
+
+
 STATE_FLOW_EXAMPLES = SAMPLE / "model" / "StateflowExamples"
 
 
@@ -599,6 +642,9 @@ def test_stateflow_examples_all_parse_and_are_complete():
                         value,
                     )
             assert not re.search(r"里的 decision \d", json.dumps(document)), path
+            payload = json.dumps(document, ensure_ascii=False)
+            for marker in ("<!DOCTYPE", "<span", "font-family", "font-size"):
+                assert marker not in payload, (path, document["chart"], marker)
             for flow in all_flows(document):
                 for statement in walk_flow(flow):
                     target = statement.get("to")
