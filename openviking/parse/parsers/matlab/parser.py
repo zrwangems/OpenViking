@@ -471,27 +471,45 @@ class MatlabParser(BaseParser):
                 title = path.stem
             elif suffix == ".mat":
                 folder = _output_folder(path)
-                documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
-                for name, document in documents.items():
-                    if isinstance(document, bytes):
-                        await writer.write_bytes(f"{folder}/{name}", document)
-                    else:
-                        await writer.write_text(f"{folder}/{name}", document)
-                warnings.extend(mat_warnings)
-                # A MAT file is kept as its parsed values, except when the reader
-                # reports content it could not expand (HDF5 reference arrays):
-                # then the bytes stay the only complete copy.
-                incomplete = bool(mat_warnings)
-                if incomplete:
+                try:
+                    documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
+                except Exception as exc:  # noqa: BLE001 - degrade, never drop the file
+                    # A v7.3 MAT file needs h5py; without it, or when the HDF5
+                    # side is damaged, the source is the only copy of the data.
+                    # Keeping it with a warning beats losing the file outright.
                     await writer.write_bytes(
                         f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
                     )
-                meta = {
-                    "matlab_format": "mat",
-                    "original_preserved": incomplete,
-                    **_source_identity(path),
-                }
-                title = path.stem
+                    warnings.append(f"{path.name}: MAT 解析失败，保留原件（{exc}）")
+                    meta = {
+                        "matlab_format": "mat",
+                        "parse_status": "original-only",
+                        "original_preserved": True,
+                        "parse_error": str(exc),
+                        **_source_identity(path),
+                    }
+                    title = path.stem
+                else:
+                    for name, document in documents.items():
+                        if isinstance(document, bytes):
+                            await writer.write_bytes(f"{folder}/{name}", document)
+                        else:
+                            await writer.write_text(f"{folder}/{name}", document)
+                    warnings.extend(mat_warnings)
+                    # A MAT file is kept as its parsed values, except when the
+                    # reader reports content it could not expand (HDF5 reference
+                    # arrays): then the bytes stay the only complete copy.
+                    incomplete = bool(mat_warnings)
+                    if incomplete:
+                        await writer.write_bytes(
+                            f"{folder}/{path.name}", await asyncio.to_thread(path.read_bytes)
+                        )
+                    meta = {
+                        "matlab_format": "mat",
+                        "original_preserved": incomplete,
+                        **_source_identity(path),
+                    }
+                    title = path.stem
             elif suffix == ".xlsx":
                 folder = _output_folder(path)
                 payload = await asyncio.to_thread(parse_workbook, path)
@@ -586,8 +604,12 @@ class MatlabParser(BaseParser):
                     )
                     await writer.write_text(f"{folder}/figure.md", figure_text(payload))
                 elif suffix == ".mldatx":
+                    # A Simulink Test container becomes tests.json; a Simulation
+                    # Data Inspector session holds runs and signals instead, so
+                    # it gets its own page name rather than a misleading one.
+                    document = "session.json" if payload.get("kind") == "sdi" else "tests.json"
                     await writer.write_text(
-                        f"{folder}/tests.json",
+                        f"{folder}/{document}",
                         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                     )
                 elif suffix in {".slreqx", ".slmx"}:

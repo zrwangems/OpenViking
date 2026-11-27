@@ -13,6 +13,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import io
+import json
 import re
 import struct
 import zipfile
@@ -452,17 +453,63 @@ def _flat_values(node: Any, names: set[str]) -> list[Any]:
     return found
 
 
+MLDATX_SCHEMA = "ov.matlab.mldatx/2"
+
+# A ``.mldatx`` is a ZIP container that three different tools write: Simulink
+# Test (suite and case XML), the Simulation Data Inspector (run settings, the
+# signals a session viewed and its Parquet data chunks) and plain MATLAB
+# session archives. Reading it one way for all three loses whatever does not
+# match that shape, so the member names decide which reader runs.
+_SDI_ROOTS = ("runs/", "views/", "parquet/")
+_SDI_MEMBER_LIMIT = 4 * 1024 * 1024
+
+
+def _member_bytes(
+    archive: zipfile.ZipFile, name: str, limit: int = _SDI_MEMBER_LIMIT
+) -> bytes | None:
+    """One member's bytes, or None when it is bigger than the reader accepts."""
+    info = archive.getinfo(name)
+    if info.file_size > limit:
+        return None
+    with archive.open(info) as stream:
+        return stream.read(limit + 1)
+
+
+def _member_json(archive: zipfile.ZipFile, name: str) -> Any:
+    """One JSON member; None when absent, too large or not JSON."""
+    try:
+        data = _member_bytes(archive, name)
+    except KeyError:
+        return None
+    if data is None or len(data) > _SDI_MEMBER_LIMIT:
+        return None
+    try:
+        return json.loads(data.decode("utf-8", errors="replace"))
+    except ValueError:
+        return None
+
+
+def _container_kind(member_names: list[str], root_tags: set[str]) -> str:
+    """Which of the three writers produced this container."""
+    if root_tags & {"TestSuiteDefinition", "TestCaseDefinition", "TestSuite", "TestCase"}:
+        return "simulink-test"
+    if any(name.startswith(_SDI_ROOTS) for name in member_names):
+        return "sdi"
+    return "generic"
+
+
 def parse_mldatx(path: str | Path) -> dict[str, Any]:
-    """Simulink Test container -> suites, cases, inputs, criteria and results."""
+    """A ``.mldatx`` container, read according to the members it holds."""
     path = Path(path)
     if not zipfile.is_zipfile(path):
         return {
-            "schema": "ov.matlab.mldatx/1",
+            "schema": MLDATX_SCHEMA,
             "file": path.name,
+            "kind": "unknown",
             "members": [],
             "suites": [],
             "tests": [],
-            "boundary": "Not a ZIP container; no test structure was readable.",
+            "boundary": "Not a ZIP container; no structure was readable.",
         }
     with zipfile.ZipFile(path) as archive:
         members = [
@@ -471,10 +518,28 @@ def parse_mldatx(path: str | Path) -> dict[str, Any]:
             if not info.is_dir()
         ]
         raw_xml: dict[str, bytes] = {}
+        root_tags: set[str] = set()
         for name in archive.namelist():
-            if name.endswith(".xml") and not name.startswith("metadata/"):
-                raw_xml[name] = read_xml_member(archive, name)
+            if not name.endswith(".xml") or name.startswith("metadata/"):
+                continue
+            raw_xml[name] = read_xml_member(archive, name)
+            try:
+                root_tags.add(_local_tag(ET.fromstring(raw_xml[name]).tag))
+            except ET.ParseError:
+                continue
+        kind = _container_kind([member["name"] for member in members], root_tags)
+        if kind == "sdi":
+            return _sdi_payload(path.name, archive, members)
+    return _test_payload(path.name, members, raw_xml, kind)
 
+
+def _test_payload(
+    file_name: str,
+    members: list[dict[str, Any]],
+    raw_xml: dict[str, bytes],
+    kind: str = "simulink-test",
+) -> dict[str, Any]:
+    """Simulink Test container -> suites, cases, inputs, criteria and results."""
     suites_by_path: dict[str, dict[str, Any]] = {}
     case_documents: list[tuple[str, dict[str, Any], str]] = []
     generic_tests: list[dict[str, Any]] = []
@@ -576,9 +641,17 @@ def parse_mldatx(path: str | Path) -> dict[str, Any]:
         for member in members
         if not member["name"].lower().endswith((".xml", ".rels"))
     ]
+    boundary = "Static test structure and results; tests are not executed."
+    if kind == "generic":
+        boundary = (
+            "No Simulink Test or Simulation Data Inspector member was found; only the "
+            "member index and the readable XML were captured. What the archive is for "
+            "is left to the description stage."
+        )
     return {
-        "schema": "ov.matlab.mldatx/1",
-        "file": path.name,
+        "schema": MLDATX_SCHEMA,
+        "file": file_name,
+        "kind": kind,
         "members": members,
         "unparsed_member_count": len(unparsed_members),
         "unparsed_members": unparsed_members[:20],
@@ -588,8 +661,272 @@ def parse_mldatx(path: str | Path) -> dict[str, Any]:
             "suites": len(suites),
             "cases": sum(len(suite["cases"]) for suite in suites),
         },
-        "boundary": "Static test structure and results; tests are not executed.",
+        "boundary": boundary,
     }
+
+
+def _sdi_number(value: Any) -> float | int | None:
+    """A number from the session file, or None for anything else.
+
+    The file writes some settings as numbers and others as numeric strings
+    (the solver's maximum step, for one), so both forms are accepted.
+    """
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return value
+    if isinstance(value, str):
+        try:
+            number = float(value)
+        except ValueError:
+            return None
+        return int(number) if number.is_integer() else number
+    return None
+
+
+def _sdi_color(element) -> str:
+    """``#RRGGBB`` from the ``<Color><r>…`` values the viewer stores."""
+    channels = []
+    for name in ("r", "g", "b"):
+        raw = element.findtext(name)
+        try:
+            value = float(raw) if raw is not None else 0.0
+        except ValueError:
+            value = 0.0
+        channels.append(max(0, min(255, round(value * 255))))
+    return "#{:02X}{:02X}{:02X}".format(*channels)
+
+
+def _sdi_runs(
+    archive: zipfile.ZipFile, members: list[dict[str, Any]], names: list[str]
+) -> list[dict[str, Any]]:
+    """Run settings of the session: model, solver, time span and wall clock."""
+    raw = _member_json(archive, "runs/sdi_run_data.json")
+    if not isinstance(raw, list):
+        return []
+    storage: dict[int, list[dict[str, Any]]] = {}
+    for name in names:
+        if not (name.startswith("runs/parquetSignalStorageMetadataRun") and name.endswith(".json")):
+            continue
+        run_id_text = name[len("runs/parquetSignalStorageMetadataRun") : -len(".json")]
+        records = _member_json(archive, name)
+        if not run_id_text.isdigit() or not isinstance(records, list):
+            continue
+        storage[int(run_id_text)] = [
+            {"signal_id": record.get("signalId"), "data": record.get("dataStorageId")}
+            for record in records
+            if isinstance(record, dict)
+        ]
+    runs: list[dict[str, Any]] = []
+    for record in raw:
+        if not isinstance(record, dict):
+            continue
+        info = record.get("OutputMetaData") or {}
+        run_id = record.get("id")
+        run: dict[str, Any] = {"id": run_id}
+        for key, source in (
+            ("model", "Model"),
+            ("model_version", "ModelVersion"),
+            ("matlab_version", "SLVersion"),
+            ("platform", "Platform"),
+            ("machine", "MachineName"),
+            ("user", "UserID"),
+            ("stop_event", "StopEventDescription"),
+        ):
+            value = _scalar(info.get(source))
+            if value:
+                run[key] = value
+        solver = {
+            "name": _scalar(info.get("SolverName")),
+            "type": _scalar(info.get("SolverType")),
+            "max_step": _sdi_number(info.get("SolverMaxStepSize")),
+        }
+        run["solver"] = {key: value for key, value in solver.items() if value not in (None, "")}
+        for key, source in (
+            ("start_time", "StartTime"),
+            ("stop_time", "StopTime"),
+            ("simulated_time", "SimTime"),
+            ("total_time", "TotalTime"),
+            ("update_time", "UpdateTime"),
+            ("terminate_time", "TermTime"),
+        ):
+            value = _sdi_number(info.get(source))
+            if value is not None:
+                run[key] = value
+        recorded = _sdi_number(record.get("Date"))
+        if recorded is not None:
+            from datetime import datetime, timezone
+
+            run["recorded_at"] = datetime.fromtimestamp(
+                float(recorded), tz=timezone.utc
+            ).isoformat()
+        if isinstance(run_id, int) and storage.get(run_id):
+            run["stored_signals"] = storage[run_id]
+        runs.append(run)
+    return runs
+
+
+def _sdi_signals(archive: zipfile.ZipFile) -> list[dict[str, Any]]:
+    """The signals the session had checked, with the block each one came from."""
+    raw = _member_bytes(archive, "views/sdi_checked_signals.xml")
+    if raw is None:
+        return []
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return []
+    signals: list[dict[str, Any]] = []
+    for element in root.findall("./Signals/*"):
+        name = _scalar(element.findtext("SignalName")) or _scalar(element.findtext("LeafPath"))
+        if not name and element.find("BlockPath") is None:
+            continue
+        signal: dict[str, Any] = {"name": name or "unnamed signal"}
+        block = [
+            _scalar(item.text)
+            for item in element.findall("./BlockPath/Element")
+            if _scalar(item.text)
+        ]
+        if block:
+            signal["block_path"] = block[0]
+        port = _scalar(element.findtext("Port"))
+        if port.isdigit():
+            signal["port"] = int(port)
+        plots = [
+            int(item.text)
+            for item in element.findall("./Plots/Element")
+            if _scalar(item.text).isdigit()
+        ]
+        if plots:
+            signal["plots"] = plots
+        color = element.find("Color")
+        if color is not None:
+            signal["color"] = _sdi_color(color)
+        signal_id = _scalar(element.findtext("ID"))
+        if signal_id.isdigit():
+            signal["id"] = int(signal_id)
+        signals.append(signal)
+    return signals
+
+
+def _sdi_views(archive: zipfile.ZipFile) -> list[dict[str, Any]]:
+    """Plot ranges of the session's subplots."""
+    raw = _member_bytes(archive, "views/sdi_view_meta_data.xml")
+    if raw is None:
+        return []
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return []
+    views: list[dict[str, Any]] = []
+    for element in root.findall("./SubPlots/*"):
+        view: dict[str, Any] = {}
+        view_id = _scalar(element.findtext("ID"))
+        if view_id.isdigit():
+            view["id"] = int(view_id)
+        limits: dict[str, float] = {}
+        for key, names_ in (
+            ("time_range", ("Tmin", "Tmax")),
+            ("value_range", ("Ymin", "Ymax")),
+        ):
+            try:
+                pair = [float(element.findtext(item)) for item in names_]
+            except (TypeError, ValueError):
+                continue
+            limits[key] = pair
+        view.update(limits)
+        visualization = _scalar(element.findtext("visualizationID"))
+        if visualization:
+            view["visualization"] = visualization
+        if not view:
+            continue
+        views.append(view)
+    return views
+
+
+def _sdi_payload(
+    file_name: str, archive: zipfile.ZipFile, members: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Simulation Data Inspector session: runs, viewed signals and plot ranges.
+
+    The measurements themselves are Parquet chunks the session points at. They
+    are counted and kept as the original archive, not decoded here: the chunks
+    repeat the run's whole sample set, which the resource tree does not need
+    twice.
+    """
+    names = [member["name"] for member in members]
+    runs = _sdi_runs(archive, members, names)
+    signals = _sdi_signals(archive)
+    views = _sdi_views(archive)
+    inspect = _member_json(archive, "runs/sdi_inspect.json")
+    compression = {
+        "enabled": (_member_json(archive, "compression/compression_flag.json") or {}).get(
+            "CompressionFlag"
+        ),
+        "algorithm": (_member_json(archive, "compression/compression_type.json") or {}).get(
+            "CompressionType"
+        ),
+        "points_in_runs": (_member_json(archive, "compression/num_points_for_load.json") or {}).get(
+            "NumPointsInRuns"
+        ),
+    }
+    compression = {key: value for key, value in compression.items() if value is not None}
+    chunks = [member for member in members if member["name"].startswith("parquet/")]
+    read_members = {
+        "runs/sdi_run_data.json",
+        "runs/sdi_inspect.json",
+        "views/sdi_checked_signals.xml",
+        "views/sdi_view_meta_data.xml",
+        "compression/compression_flag.json",
+        "compression/compression_type.json",
+        "compression/num_points_for_load.json",
+        "[Content_Types].xml",
+    }
+    unparsed = [
+        member["name"]
+        for member in members
+        if member["name"] not in read_members
+        and not member["name"].endswith(".rels")
+        and not member["name"].startswith("metadata/")
+        and not (member["name"].startswith("runs/") and member["name"].endswith(".json"))
+        and not (member["name"].startswith("max_points/") and member["name"].endswith(".points"))
+    ]
+    payload: dict[str, Any] = {
+        "schema": MLDATX_SCHEMA,
+        "file": file_name,
+        "kind": "sdi",
+        "members": members,
+        "runs": runs,
+        "signals": signals,
+        "views": views,
+        "unparsed_member_count": len(unparsed),
+        "unparsed_members": unparsed[:20],
+        "suites": [],
+        "tests": [],
+        "coverage": {
+            "runs": len(runs),
+            "signals": len(signals),
+            "views": len(views),
+        },
+        "boundary": (
+            "Simulation Data Inspector session: run settings, checked signals and plot "
+            "ranges. Signal samples stay in Parquet chunks; they are counted, not decoded."
+        ),
+    }
+    if isinstance(inspect, dict) and inspect:
+        payload["inspect"] = {
+            key: inspect[key]
+            for key in ("currentRunID", "inspectRuns")
+            if inspect.get(key) is not None
+        }
+    if compression:
+        payload["compression"] = compression
+    if chunks:
+        payload["signal_data"] = {
+            "format": "parquet",
+            "chunks": len(chunks),
+            "bytes": sum(member["bytes"] for member in chunks),
+        }
+    return payload
 
 
 def _node_text(node: dict[str, Any]) -> str:

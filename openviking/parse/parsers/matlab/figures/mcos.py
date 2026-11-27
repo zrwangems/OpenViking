@@ -726,6 +726,30 @@ def _aligned_stream(payload: Payload) -> list[tuple[int, int, str]]:
 # Axes kinds whose block starts with a "Camera" marker of their own.
 _CAMERA_OWNERS = ("Axes", "PolarAxes", "GeographicAxes", "GeographicAxesBase")
 
+# Marker owner -> axis kind. A polar axes stores theta/r rulers, a geographic
+# one latitude/longitude, and a cartesian one x/y/z; the plotted objects are the
+# same classes in all three, so the axes block is what names the chart.
+_AXES_KINDS = {
+    "Axes": "cartesian",
+    "PolarAxes": "polar",
+    "GeographicAxes": "geographic",
+    "GeographicAxesBase": "geographic",
+}
+
+
+def _axes_kind(marker: str) -> str:
+    """Axis kind of the block that ``marker`` opens (empty when unknown).
+
+    ``PolarAxes Camera`` opens a polar axes, ``GeographicAxesBase Camera`` a
+    geographic one, ``Axes Camera`` a cartesian one; the second axes of a
+    ``yyaxis`` chart is marked by ``Axes Additional ChildContainer``.
+    """
+    if marker == "Axes Additional ChildContainer":
+        return "cartesian"
+    if not marker.endswith(" Camera"):
+        return ""
+    return _AXES_KINDS.get(marker[: -len(" Camera")], "")
+
 
 def _is_axes_start(value: str) -> bool:
     """Whether a string marks the head of one axes block."""
@@ -961,11 +985,13 @@ def read_figure(payload: Payload) -> dict[str, Any]:
             by_block[_block_for(slot, blocks)].append(item)
 
     axes: list[dict[str, Any]] = []
+    markers = dict(texts)
     for block_index, (start, end) in enumerate(blocks):
         block_texts = [(index, value) for index, value in texts if start <= index < end]
         block_numbers = [entry for entry in numeric if start <= entry.index < end]
         position = _axes_position(block_numbers)
         limits = _axes_limits(block_numbers)
+        axis_type = _axes_kind(markers.get(start, ""))
 
         items = sorted(by_block[block_index], key=lambda item: item["slot"])
         items = [
@@ -992,7 +1018,15 @@ def read_figure(payload: Payload) -> dict[str, Any]:
                 }
             )
         axes.append(
-            {"position": position, **limits, **_axes_labels(block_texts), "series": plotted}
+            {
+                "position": position,
+                **limits,
+                **_axes_labels(block_texts),
+                # Cartesian is the default everywhere else in the payload, so
+                # only the axes a reader would otherwise misread carry a type.
+                **({"axis_type": axis_type} if axis_type and axis_type != "cartesian" else {}),
+                "series": plotted,
+            }
         )
 
     positions = [item["position"] for item in axes if item["position"]]

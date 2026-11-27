@@ -1267,6 +1267,29 @@ async def test_mat_with_unexpandable_references_keeps_its_bytes(tmp_path):
 
 
 @pytest.mark.asyncio
+async def test_mat_that_cannot_be_read_keeps_its_bytes(tmp_path, monkeypatch):
+    """A v7.3 MAT without h5py degrades to the original plus a warning."""
+    source = tmp_path / "recorded.mat"
+    source.write_bytes(b"\x89HDF\r\n\x1a\n" + b"\x00" * 32)
+
+    def unreadable(path):
+        raise RuntimeError("MAT v7.3 parsing requires h5py")
+
+    monkeypatch.setattr(
+        "openviking.parse.parsers.matlab.parser.parse_mat_documents", unreadable
+    )
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "recorded"
+    assert (root / "recorded.mat").read_bytes() == source.read_bytes()
+    assert result.meta["original_preserved"] is True
+    assert result.meta["parse_status"] == "original-only"
+    assert "h5py" in result.meta["parse_error"]
+    assert any("MAT 解析失败" in warning for warning in result.warnings)
+
+
+@pytest.mark.asyncio
 async def test_parsed_containers_are_not_stored_as_originals(tmp_path):
     """A file whose content is fully parsed is kept only as that parsed content."""
     store = LocalParseOutputStore(tmp_path / "artifacts")
@@ -1451,6 +1474,112 @@ def test_mldatx_keeps_all_suites_cases_and_results(tmp_path):
     assert any(item["tag"] == "Result" for item in tree["tests"])
     assert tree["members"][0]["name"] == "testSuite.xml"
     assert tree["unparsed_member_count"] == 0
+    assert tree["kind"] == "simulink-test"
+
+
+def _sdi_mldatx(tmp_path: Path) -> Path:
+    """A Simulation Data Inspector session: runs, checked signals, Parquet chunks."""
+    path = tmp_path / "WindTurbineSDI.mldatx"
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr(
+            "runs/sdi_run_data.json",
+            json.dumps(
+                [
+                    {
+                        "id": 2875,
+                        "Date": 1734028869,
+                        "OutputMetaData": {
+                            "Model": "WEC_StateMachine",
+                            "ModelVersion": "9.80",
+                            "SLVersion": "Simulink 25.1 (R2025a)",
+                            "SolverName": "ode23t",
+                            "SolverType": "Variable-Step",
+                            "SolverMaxStepSize": "16",
+                            "StartTime": 0,
+                            "StopTime": 800,
+                            "SimTime": 1.049781,
+                            "StopEventDescription": "Reached stop time of 800",
+                        },
+                    }
+                ]
+            ),
+        )
+        archive.writestr("runs/sdi_inspect.json", '{"currentRunID": 2875}')
+        archive.writestr(
+            "runs/parquetSignalStorageMetadataRun2875.json",
+            json.dumps([{"signalId": 2920, "dataStorageId": [11], "timeStorageId": [0]}]),
+        )
+        archive.writestr(
+            "views/sdi_checked_signals.xml",
+            "<sdi><Version>1.0</Version><Signals><Sig1>"
+            "<SignalName>wTurbine</SignalName><Port>1</Port>"
+            "<BlockPath><Element>WEC_StateMachine/Wind Turbine/Transfer Fcn</Element></BlockPath>"
+            "<Plots><Element>3</Element></Plots>"
+            "<Color><r>0</r><g>0.44705882352941179</g><b>0.74117647058823533</b></Color>"
+            "<ID>2920</ID></Sig1></Signals></sdi>",
+        )
+        archive.writestr(
+            "views/sdi_view_meta_data.xml",
+            "<sdi><Version>2.13</Version><SubPlots><SubPlot3><ID>3</ID>"
+            "<Tmin>-16</Tmin><Tmax>816</Tmax><Ymin>-1.0</Ymin><Ymax>22.6</Ymax>"
+            "<visualizationID>timeplotplugin</visualizationID></SubPlot3></SubPlots></sdi>",
+        )
+        archive.writestr(
+            "compression/compression_flag.json", '{"CompressionFlag": true}'
+        )
+        archive.writestr("parquet/run2875/0", b"PAR1" * 8)
+        archive.writestr("metadata/thumbnail.png", b"\x89PNG")
+    return path
+
+
+def test_mldatx_sdi_session_keeps_runs_and_signals(tmp_path):
+    """An SDI session is run settings and viewed signals, not a test suite."""
+    tree = parse_mldatx(_sdi_mldatx(tmp_path))
+    assert tree["kind"] == "sdi"
+    run = tree["runs"][0]
+    assert run["model"] == "WEC_StateMachine"
+    assert run["solver"] == {"name": "ode23t", "type": "Variable-Step", "max_step": 16}
+    assert run["stop_time"] == 800
+    assert run["simulated_time"] == pytest.approx(1.049781)
+    assert run["recorded_at"].startswith("2024-12-12")
+    assert run["stored_signals"] == [{"signal_id": 2920, "data": [11]}]
+    signal = tree["signals"][0]
+    assert signal["name"] == "wTurbine"
+    assert signal["block_path"] == "WEC_StateMachine/Wind Turbine/Transfer Fcn"
+    assert signal["color"] == "#0072BD"
+    assert tree["views"][0]["time_range"] == [-16.0, 816.0]
+    assert tree["views"][0]["visualization"] == "timeplotplugin"
+    assert tree["compression"] == {"enabled": True}
+    assert tree["signal_data"] == {"format": "parquet", "chunks": 1, "bytes": 32}
+    # The samples live in the Parquet chunk, so the archive stays the only copy.
+    assert tree["unparsed_members"] == ["parquet/run2875/0"]
+    assert tree["suites"] == [] and tree["tests"] == []
+
+
+@pytest.mark.asyncio
+async def test_sdi_session_is_written_as_its_own_page(tmp_path):
+    source = _sdi_mldatx(tmp_path)
+    result = await MatlabParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root) / "WindTurbineSDI"
+    payload = json.loads((root / "session.json").read_text(encoding="utf-8"))
+    assert payload["kind"] == "sdi"
+    assert payload["runs"][0]["model"] == "WEC_StateMachine"
+    assert not (root / "tests.json").exists()
+    assert (root / "WindTurbineSDI.mldatx").is_file()
+    assert result.meta["original_preserved"] is True
+
+
+def test_mldatx_without_a_known_layout_only_indexes_its_members(tmp_path):
+    """A layout neither reader knows is indexed, not guessed at."""
+    path = tmp_path / "session.mldatx"
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr("notes/readme.txt", "handover")
+    tree = parse_mldatx(path)
+    assert tree["kind"] == "generic"
+    assert tree["members"] == [{"name": "notes/readme.txt", "bytes": 8}]
+    assert "left to the description stage" in tree["boundary"]
 
 
 @pytest.mark.asyncio

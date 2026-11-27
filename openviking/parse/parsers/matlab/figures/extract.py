@@ -90,6 +90,22 @@ _MCOS_KINDS = {
     "GeographicAxes": "geo",
 }
 
+# Axis kinds whose coordinates change what the same primitive draws: a line in
+# a polar axes is a polar plot, a scatter on a geographic axes is a geographic
+# scatter. The plotted class is identical, so only the axes says which one it is.
+_MCOS_AXIS_KINDS = {
+    "polar": {"line", "scatter", "bubble", "histogram"},
+    "geographic": {"line", "scatter", "bubble"},
+}
+
+
+def _refine_mcos(kind: str, axis_type: str) -> tuple[str, str | None]:
+    """Chart kind and subtype for one plotted class inside one axes."""
+    if axis_type in _MCOS_AXIS_KINDS and kind in _MCOS_AXIS_KINDS[axis_type]:
+        return ("polar" if axis_type == "polar" else "geo"), kind
+    return kind, None
+
+
 _SKIP_CHILDREN = {"legend", "colorbar", "text", "rectangle", "decoration", "uicontrol"}
 
 
@@ -461,8 +477,25 @@ def _tick_labels(node: FigureNode, name: str) -> list[str]:
     return [label for label in labels if label]
 
 
+# Axes object type -> axis kind. A cartesian axes is the default, so only the
+# others are written into the payload.
+_AXIS_TYPE_BY_CLASS = {
+    "axes": "cartesian",
+    "uiaxes": "cartesian",
+    "polaraxes": "polar",
+    "geographicaxes": "geographic",
+    "mapaxes": "map",
+}
+
+
 def _axes_info(axes: FigureNode) -> dict[str, Any]:
     info: dict[str, Any] = {}
+    # Polar, geographic and map axes draw the same primitives as a cartesian
+    # one; their coordinates are theta/r or latitude/longitude, so the type is
+    # what keeps a polarplot from being read as a plain line chart.
+    axis_type = _AXIS_TYPE_BY_CLASS.get(axes.object_type.lower())
+    if axis_type and axis_type != "cartesian":
+        info["axis_type"] = axis_type
     labels = _axis_labels(axes)
     for key in ("title", "x_label", "y_label", "z_label"):
         if labels.get(key):
@@ -969,10 +1002,13 @@ def _mcos_charts(
     charts: list[dict[str, Any]] = []
     files: dict[str, bytes] = {}
     for axes_index, axes in enumerate(axes_list, 1):
-        groups: dict[str, list[dict[str, Any]]] = {}
+        groups: dict[tuple[str, str | None], list[dict[str, Any]]] = {}
         for item in axes.get("series") or []:
-            kind = _MCOS_KINDS.get(item.get("class") or "", "line")
-            groups.setdefault(kind, []).append(item)
+            kind, subtype = _refine_mcos(
+                _MCOS_KINDS.get(item.get("class") or "", "line"),
+                axes.get("axis_type") or "",
+            )
+            groups.setdefault((kind, subtype), []).append(item)
         subplot: dict[str, Any] = {
             "rows": axes.get("rows", 1),
             "columns": axes.get("columns", 1),
@@ -983,11 +1019,11 @@ def _mcos_charts(
             subplot["position"] = [round(value, 4) for value in axes["position"]]
         info = {
             key: axes[key]
-            for key in ("title", "x_label", "y_label", "x_lim", "y_lim", "z_lim")
+            for key in ("title", "x_label", "y_label", "x_lim", "y_lim", "z_lim", "axis_type")
             if axes.get(key)
         }
         legend = [item["name"] for item in reversed(axes.get("series") or [])]
-        for kind, items in groups.items():
+        for (kind, subtype), items in groups.items():
             encoded, data_files = _encode(
                 [Series(item["name"], item.get("fields") or {}) for item in items]
             )
@@ -997,7 +1033,7 @@ def _mcos_charts(
                     "index": len(charts) + 1,
                     "type": kind,
                     "type_label": KIND_LABELS.get(kind, kind),
-                    "subtype": None,
+                    "subtype": subtype,
                     "source_class": items[0].get("class"),
                     "type_confidence": "class",
                     "figure": 1,

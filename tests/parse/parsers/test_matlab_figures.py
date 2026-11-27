@@ -257,6 +257,7 @@ def test_polar_and_geographic_axes_keep_their_coordinates(tmp_path):
     payload, _ = parse_figure(_write(tmp_path, "polar.fig", polar))
     chart = payload["charts"][0]
     assert chart["type"] == "polar"
+    assert chart["axes"]["axis_type"] == "polar"
     assert chart["series"][0]["values"]["theta"] == [0.0, 1.5]
 
     geo = _figure(
@@ -278,7 +279,25 @@ def test_polar_and_geographic_axes_keep_their_coordinates(tmp_path):
     )
     payload, _ = parse_figure(_write(tmp_path, "geo.fig", geo))
     assert payload["charts"][0]["type"] == "geo"
+    assert payload["charts"][0]["axes"]["axis_type"] == "geographic"
     assert payload["charts"][0]["series"][0]["values"]["latitude"] == [39.9, 31.2]
+
+
+def test_r2025b_polar_and_geo_figures_are_not_plain_lines():
+    """The axes block names the chart: same Line class, different coordinates."""
+    for name, kind, axis_type in (
+        ("84_polarplot.fig", "polar", "polar"),
+        ("85_polarscatter.fig", "polar", "polar"),
+        ("87_polaraxes_custom.fig", "polar", "polar"),
+        ("88_geoplot.fig", "geo", "geographic"),
+        ("89_geoscatter.fig", "geo", "geographic"),
+        ("92_geoaxes_custom.fig", "geo", "geographic"),
+    ):
+        payload, _ = parse_figure(GALLERY_FIXTURES / "fig" / name)
+        chart = payload["charts"][0]
+        assert chart["type"] == kind, name
+        assert chart["axes"]["axis_type"] == axis_type, name
+        assert chart["type_label"] == KIND_LABELS[kind], name
 
 
 # --- labels, axes and annotations ----------------------------------------------------
