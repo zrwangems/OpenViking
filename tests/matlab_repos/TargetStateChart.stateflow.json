@@ -1,23 +1,28 @@
 {
-  "schema": "ov.matlab.stateflow/3",
+  "schema": "ov.matlab.stateflow/4",
   "file": "TargetStateChart.sfx",
   "charts": [
     {
-      "schema": "ov.matlab.stateflow/3",
+      "schema": "ov.matlab.stateflow/4",
       "chart": "TargetStateChart",
+      "type": "state chart",
+      "parallel": true,
       "action_language": "2",
+      "app": true,
       "summary": {
         "states": 12,
         "functions": 3,
         "notes": 9,
         "transitions": 20,
         "events": 12,
-        "data": 8
+        "data": 8,
+        "messages": 0
       },
       "states": [
         {
           "name": "Status",
           "parallel": true,
+          "order": "1",
           "states": [
             {
               "name": "Disconnected",
@@ -80,11 +85,6 @@
                     {
                       "to": "NotRunning",
                       "order": "1",
-                      "via": [
-                        {
-                          "order": "2"
-                        }
-                      ],
                       "initial": true
                     },
                     {
@@ -146,11 +146,6 @@
                   "to": "Unloaded",
                   "condition_action": "loadedOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.LOADED);\nrunningOnConnect_ = (tg_.get('tc.ModelState') == ...\nslrealtime.ModelState.RUNNING);\nconnectInProgress_ = true;",
                   "order": "1",
-                  "via": [
-                    {
-                      "order": "2"
-                    }
-                  ],
                   "initial": true
                 },
                 {
@@ -239,7 +234,7 @@
         {
           "name": "EnterUnloadedState",
           "kind": "matlab",
-          "signature": "EnterUnloadedState",
+          "signature": "function EnterUnloadedState",
           "notifies": [
             "Connected",
             "LoadFailed",
@@ -251,7 +246,7 @@
         {
           "name": "EnterNotRunningState",
           "kind": "matlab",
-          "signature": "EnterNotRunningState",
+          "signature": "function EnterNotRunningState",
           "notifies": [
             "Connected",
             "StartFailed",
@@ -263,7 +258,7 @@
         {
           "name": "EnterRunningState",
           "kind": "matlab",
-          "signature": "EnterRunningState",
+          "signature": "function EnterRunningState",
           "notifies": [
             "Connected",
             "Started",
