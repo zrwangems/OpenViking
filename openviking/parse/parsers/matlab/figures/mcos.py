@@ -254,6 +254,34 @@ def read_payload(path: str | Path) -> Payload:
     return payload
 
 
+def property_names_seen(payload: Payload, start: int = 4552, end: int = 9032) -> list[str]:
+    """Property names referenced by the store's value stream.
+
+    The stream interleaves a value reference, a flag and the index of the
+    property name it belongs to, so scanning for words that are property-name
+    indices recovers which properties a figure serialized. Verified by diffing
+    two figures that differ in one property set (log scales add XScale_I,
+    ScaleMode, MinorTick_I …). The name-to-value link is not decoded yet.
+    """
+    import numpy as np
+
+    if not payload.store:
+        return []
+    words = np.frombuffer(payload.store[: (len(payload.store) // 4) * 4], dtype="<u4")
+    properties = {
+        index: name
+        for index, name in enumerate(payload.store_names)
+        if name and ("_" in name or name.endswith("Mode"))
+    }
+    seen: list[str] = []
+    for position in range(start // 4, min(end // 4, len(words))):
+        index = int(words[position])
+        name = properties.get(index)
+        if name and (not seen or seen[-1] != name):
+            seen.append(name)
+    return seen
+
+
 def _is_series(value: Any) -> bool:
     import numpy as np
 

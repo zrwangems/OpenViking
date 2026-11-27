@@ -588,3 +588,25 @@ def test_hgsave_v6_corpus_file_reads_its_series():
     assert chart["series"][0]["points"] == 30
     assert chart["axes"]["title"] == "format test"
     assert chart["axes"]["x_lim"] == [0.0, 30.0]
+
+
+def test_property_names_recovered_from_the_store_stream():
+    """Differencing two figures recovers the property names the store records."""
+    from openviking.parse.parsers.matlab.figures.mcos import property_names_seen, read_payload
+
+    basic = property_names_seen(read_payload(GALLERY_FIXTURES / "fig/01_line_basic.fig"))
+    loglog = property_names_seen(read_payload(GALLERY_FIXTURES / "fig/07_line_loglog.fig"))
+    assert len(basic) > 300
+    assert "XData_I" in basic or "YData_I" in basic
+    # 07 is the same script with log scales: only the log-axis properties are new.
+    extra = set(loglog) - set(basic)
+    assert {
+        "XScale_I",
+        "YScale_I",
+        "ScaleMode",
+        "Scale_I",
+        "MinorTickMode",
+        "MinorTick_I",
+        "XMinorGrid_I",
+        "YMinorGrid_I",
+    } <= extra
