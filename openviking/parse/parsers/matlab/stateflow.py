@@ -172,6 +172,18 @@ class Transition:
     scope: str = ""
 
 
+# Type attributes Stateflow stores under props/type and props/type/fixpt.
+_TYPE_PROP_NAMES = (
+    "method",
+    "primitive",
+    "isSigned",
+    "wordLength",
+    "slope",
+    "bias",
+    "fractionLength",
+)
+
+
 @dataclass
 class Data:
     ssid: str
@@ -186,6 +198,7 @@ class Data:
     queue_length: str = ""
     queue_overflow: str = ""
     from_workspace: bool = False
+    props: dict[str, str] = field(default_factory=dict)
 
     @property
     def is_message(self) -> bool:
@@ -672,6 +685,28 @@ def _parse_function(element, element_props: dict[str, str], parent: str) -> Func
     )
 
 
+def _data_type_props(element) -> dict[str, str]:
+    """Keep the type attributes that describe precision and scaling."""
+    type_node = element.find("./props/type")
+    if type_node is None:
+        return {}
+    found = {
+        item.get("Name"): item.text or ""
+        for item in type_node.findall("./P")
+        if item.get("Name")
+    }
+    fixpt = type_node.find("./fixpt")
+    if fixpt is not None:
+        found.update(
+            {
+                item.get("Name"): item.text or ""
+                for item in fixpt.findall("./P")
+                if item.get("Name")
+            }
+        )
+    return {name: found[name] for name in _TYPE_PROP_NAMES if found.get(name)}
+
+
 def _parse_data(element, element_props: dict[str, str], parent: str) -> Data:
     props = element.find("./props")
     size = element.find("./props/array/P[@Name='size']")
@@ -698,6 +733,7 @@ def _parse_data(element, element_props: dict[str, str], parent: str) -> Data:
         queue_length=message_props.get("queueLength", ""),
         queue_overflow=message_props.get("queueOverflowDiagnostic", ""),
         from_workspace=_flag(_props(props) if props is not None else {}, "initFromWorkspace"),
+        props=_data_type_props(element),
     )
 
 
@@ -1321,6 +1357,7 @@ def _data_json(item: Data) -> dict:
             "name": item.name,
             "scope": item.scope,
             "type": item.data_type,
+            "props": item.props,
             "size": item.size,
             "initial_value": item.initial_value,
             "range": item.range,

@@ -234,6 +234,14 @@ def all_transitions(node):
         yield from all_transitions(function)
 
 
+def all_data(node):
+    yield from node.get("data", [])
+    for state in node.get("states", []):
+        yield from all_data(state)
+    for function in node.get("functions", []):
+        yield from all_data(function)
+
+
 def all_flows(node):
     if "flow" in node:
         yield node["flow"]
@@ -329,6 +337,75 @@ def test_stateflow_charts_name_every_component_and_keep_actions():
     assert op_mode["block"].endswith("Low_Power_Charge_Sustain.OpMode3")
     assert op_mode["inputs"][:2] == ["WhlPwrCmd", "ChrgPwr"]
     assert op_mode["outputs"] == ["EngPwrCmd", "MotPwrCmd"]
+
+
+def test_stateflow_data_keeps_type_precision_and_fixed_point_props():
+    chart = chart_json(
+        parse_stateflow(
+            SAMPLE
+            / "model"
+            / "StateflowExamples"
+            / "DashboardBoilerExample"
+            / "sfDashboardBoiler.slx"
+        )[0]
+    )
+    data = {item["name"]: item for item in all_data(chart)}
+    assert data["reference"]["props"] == {
+        "method": "SF_CUSTOM_INTEGER_TYPE",
+        "primitive": "SF_DOUBLE_TYPE",
+        "isSigned": "1",
+        "wordLength": "8",
+        "slope": "1",
+        "bias": "-15",
+    }
+    assert data["temp"]["props"] == {
+        "primitive": "SF_UINT16_TYPE",
+        "isSigned": "1",
+        "wordLength": "8",
+        "slope": "0.390625",
+        "bias": "-15",
+    }
+
+
+def test_stateflow_data_keeps_fraction_length_for_binary_point_types():
+    chart = chart_json(
+        parse_stateflow(
+            SAMPLE
+            / "model"
+            / "StateflowExamples"
+            / "FixedPointMandelbrotSetExample"
+            / "sf_mandelbrot_fixpt.slx"
+        )[0]
+    )
+    data = {item["name"]: item for item in all_data(chart)}
+    assert data["c"]["props"] == {
+        "method": "SF_CUSTOM_INTEGER_TYPE",
+        "primitive": "SF_DOUBLE_TYPE",
+        "isSigned": "1",
+        "wordLength": "16",
+        "slope": "2^0",
+        "bias": "0",
+        "fractionLength": "13",
+    }
+    assert data["cn"]["props"]["fractionLength"] == "26"
+
+
+def test_stateflow_example_data_keeps_type_props():
+    counts = {"data": 0, "wordLength": 0, "bias": 0, "slope": 0, "fractionLength": 0}
+    for path in stateflow_examples():
+        for chart in parse_stateflow(path):
+            for item in chart.data:
+                counts["data"] += 1
+                for key in ("wordLength", "bias", "slope", "fractionLength"):
+                    if key in item.props:
+                        counts[key] += 1
+    assert counts == {
+        "data": 1365,
+        "wordLength": 1134,
+        "bias": 30,
+        "slope": 22,
+        "fractionLength": 29,
+    }
 
 
 def test_stateflow_sfx_keeps_hierarchy_notes_and_matlab_functions():
