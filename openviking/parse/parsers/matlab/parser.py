@@ -34,6 +34,7 @@ from openviking.parse.parsers.matlab.stateflow import (
     chart_json,
     chart_system_path,
     parse_stateflow,
+    state_transition_count,
 )
 from openviking.parse.parsers.matlab.structured import (
     parse_fig_tree,
@@ -228,7 +229,9 @@ class MatlabParser(BaseParser):
                     "stateflow_state_count": sum(len(chart.states) for chart in charts),
                     "stateflow_function_count": sum(len(chart.functions) for chart in charts),
                     "stateflow_note_count": sum(len(chart.notes) for chart in charts),
-                    "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
+                    "stateflow_transition_count": sum(
+                        state_transition_count(chart) for chart in charts
+                    ),
                     "original_preserved": False,
                     "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
                     **_source_identity(path),
@@ -395,7 +398,9 @@ class MatlabParser(BaseParser):
                     "stateflow_state_count": sum(len(chart.states) for chart in charts),
                     "stateflow_function_count": sum(len(chart.functions) for chart in charts),
                     "stateflow_note_count": sum(len(chart.notes) for chart in charts),
-                    "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
+                    "stateflow_transition_count": sum(
+                        state_transition_count(chart) for chart in charts
+                    ),
                     **_source_identity(path),
                 }
                 title = path.stem

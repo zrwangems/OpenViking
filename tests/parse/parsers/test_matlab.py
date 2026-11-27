@@ -484,6 +484,7 @@ def test_stateflow_output_carries_no_machine_identifiers():
                 "order",
                 "initial",
                 "inner",
+                "loop",
             }
             for name in (transition.get("from"), transition.get("to")):
                 assert name is None or not name.isdigit()
@@ -634,6 +635,126 @@ bind:
     assert not chart.get("junctions")
 
 
+def test_stateflow_transition_count_counts_states_not_junctions(tmp_path):
+    chart_xml = """<?xml version="1.0" encoding="utf-8"?>
+<chart id="7">
+  <P Name="name">Branching</P>
+  <P Name="actionLanguage">2</P>
+  <Children>
+    <state SSID="1">
+      <P Name="labelString">A</P>
+      <P Name="type">OR_STATE</P>
+      <P Name="decomposition">CLUSTER_STATE</P>
+    </state>
+    <state SSID="2">
+      <P Name="labelString">B</P>
+      <P Name="type">OR_STATE</P>
+    </state>
+    <state SSID="3">
+      <P Name="labelString">C</P>
+      <P Name="type">OR_STATE</P>
+    </state>
+    <junction SSID="10">
+      <P Name="type">CONNECTIVE_JUNCTION</P>
+    </junction>
+    <transition SSID="11">
+      <P Name="executionOrder">1</P>
+      <dst><P Name="SSID">1</P></dst>
+    </transition>
+    <transition SSID="12">
+      <P Name="labelString">[go]</P>
+      <P Name="executionOrder">1</P>
+      <src><P Name="SSID">1</P></src>
+      <dst><P Name="SSID">10</P></dst>
+    </transition>
+    <transition SSID="13">
+      <P Name="labelString">[b]</P>
+      <P Name="executionOrder">1</P>
+      <src><P Name="SSID">10</P></src>
+      <dst><P Name="SSID">2</P></dst>
+    </transition>
+    <transition SSID="14">
+      <P Name="labelString">[c]</P>
+      <P Name="executionOrder">2</P>
+      <src><P Name="SSID">10</P></src>
+      <dst><P Name="SSID">3</P></dst>
+    </transition>
+    <transition SSID="15">
+      <P Name="labelString">[back]</P>
+      <P Name="executionOrder">1</P>
+      <src><P Name="SSID">2</P></src>
+      <dst><P Name="SSID">1</P></dst>
+    </transition>
+    <transition SSID="16">
+      <P Name="labelString">[next]</P>
+      <P Name="executionOrder">1</P>
+      <src><P Name="SSID">3</P></src>
+      <dst><P Name="SSID">2</P></dst>
+    </transition>
+  </Children>
+</chart>
+"""
+    source = tmp_path / "Branching.sfx"
+    with zipfile.ZipFile(source, "w") as archive:
+        archive.writestr("simulink/stateflow/chart_7.xml", chart_xml)
+
+    chart = chart_json(parse_stateflow(source)[0])
+    # Six transition segments in the XML, but one of them only reaches the
+    # junction: what is counted is every way from a state (or the entry) to a
+    # state, so the branch out of the junction counts once per state it reaches.
+    assert chart["summary"]["transitions"] == 5
+    forwarded = {
+        (item.get("from"), item.get("to"), item.get("condition"))
+        for item in chart["transitions"]
+    }
+    assert forwarded == {
+        (None, "A", None),
+        ("A", "B", "go"),
+        ("A", "C", "go"),
+        ("B", "A", "back"),
+        ("C", "B", "next"),
+    }
+
+
+def test_stateflow_flow_steps_are_not_counted_as_transitions():
+    chart = chart_json(
+        parse_stateflow(
+            STATE_FLOW_EXAMPLES / "PatternWizard" / "sf_pw_ifelseifelseifelse_.sfx"
+        )[0]
+    )
+    # Four branches run here, but a flow chart changes no state: the steps are
+    # branches, not transitions, and counting them made the numbers incomparable.
+    assert len(chart["flow"]["cases"]) == 4
+    assert chart["summary"]["transitions"] == 0
+
+
+def test_stateflow_example_unnamed_ports_are_named_in_english():
+    document = example_documents("LaunchAbortController", "sf_launchabort.slx")[0]
+    references = {
+        transition[key]
+        for transition in all_transitions(document)
+        if transition.get("port")
+        for key in ("from", "to")
+        if key in transition
+    }
+    assert {"Abort port 1", "Abort port 2", "AbortLogic port 1"} <= references
+    # A port on the chart itself has no owner to name it after.
+    aircraft = example_documents("Actuator Control", "sf_aircraft_lib.slx")[0]
+    chart_ports = {
+        transition[key]
+        for transition in all_transitions(aircraft)
+        if transition.get("port")
+        for key in ("from", "to")
+        if key in transition
+    }
+    assert "port 1" in chart_ports
+    # The fallbacks are English whatever they name, and no name is a number.
+    for payload in (document, aircraft):
+        text = json.dumps(payload, ensure_ascii=False)
+        assert "的端口" not in text
+        assert "里的 decision" not in text
+
+
 RICH_TEXT_LABEL = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -702,7 +823,6 @@ def test_stateflow_examples_all_parse_and_are_complete():
         for document in documents:
             assert document["schema"] == STATE_FLOW_SCHEMA
             assert not set(keys_of(document)) & {"id", "ssid", "chart_id", "parent", "path"}
-            assert "decision" not in json.dumps(document) or document["summary"]["states"] == 0 or True
             paths = {display for display, _ in walk_paths(document)}
             names = {item.split("/")[-1] for item in paths}
             assert len(list(walk_states(document))) == document["summary"]["states"], path
@@ -718,7 +838,8 @@ def test_stateflow_examples_all_parse_and_are_complete():
                         key,
                         value,
                     )
-            assert not re.search(r"里的 decision \d", json.dumps(document)), path
+            assert not re.search(r"里的 decision \d", json.dumps(document))
+            assert "的端口" not in json.dumps(document, ensure_ascii=False), path
             payload = json.dumps(document, ensure_ascii=False)
             for marker in ("<!DOCTYPE", "<span", "font-family", "font-size"):
                 assert marker not in payload, (path, document["chart"], marker)

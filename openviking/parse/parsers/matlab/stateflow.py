@@ -855,13 +855,6 @@ def _transition_parts(transition: Transition) -> dict[str, str]:
     }
 
 
-def _junction_label(junction: Junction, index: int, paths: dict[str, str],
-                    names: dict[str, str]) -> str:
-    """Name a junction by the container it sits in; it has no name of its own."""
-    container = paths.get(junction.parent) or names.get(junction.parent, "")
-    return f"{container or 'chart'} 里的 decision {index}"
-
-
 @dataclass
 class _Path:
     steps: list[Transition]
@@ -921,8 +914,10 @@ def _port_refs(chart: Chart, ref: dict[str, str]) -> dict[str, str]:
             ports[port.ssid] = port.label
         else:
             unnamed[owner] += 1
+            # The port has no label of its own, so it is named the way every
+            # other unnamed component is: an English ordinal inside its owner.
             ports[port.ssid] = (
-                f"{owner} 的端口 {unnamed[owner]}" if owner else f"端口 {unnamed[owner]}"
+                f"{owner} port {unnamed[owner]}" if owner else f"port {unnamed[owner]}"
             )
     return ports
 
@@ -1006,20 +1001,12 @@ def _collapse(
     """
     ref = _reference(names, paths)
     junction_ssids = {junction.ssid: junction for junction in chart.junctions}
-    junction_index = {
-        junction.ssid: position
-        for position, junction in enumerate(chart.junctions, start=1)
-    }
     out_edges: dict[str, list[Transition]] = defaultdict(list)
     for transition in chart.transitions:
         if transition.source in junction_ssids:
             out_edges[transition.source].append(transition)
     for edges in out_edges.values():
         edges.sort(key=_order_key)
-
-    def junction_ref(ssid: str) -> str:
-        junction = junction_ssids[ssid]
-        return _junction_label(junction, junction_index[ssid], paths, names)
 
     port_refs = _port_refs(chart, ref)
 
@@ -1034,11 +1021,7 @@ def _collapse(
 
     def raw(transition: Transition, destination: str) -> dict:
         source, source_flags = endpoint(transition.source)
-        if not source and transition.source in junction_ssids:
-            source = junction_ref(transition.source)
         target, target_flags = endpoint(destination)
-        if not target and destination in junction_ssids:
-            target = junction_ref(destination)
         payload = {
             "from": source,
             "to": target,
@@ -1047,9 +1030,15 @@ def _collapse(
             **_transition_parts(transition),
             "order": transition.order,
         }
-        if not source:
+        if not transition.source:
             payload.pop("from")
             payload["initial"] = True
+        # A junction has no name on the canvas, so an end that is one is left
+        # out rather than given a number the chart does not show.
+        if source is None:
+            payload.pop("from", None)
+        if target is None:
+            payload.pop("to", None)
         return _compact(payload)
 
     scoped: dict[str, list[dict]] = defaultdict(list)
@@ -1081,8 +1070,8 @@ def _collapse(
             }
             if ends == "loop":
                 # The path comes back to a junction it already passed, so it
-                # ends there; the junction is named by the container it sits in.
-                payload["to"] = junction_ref(destination)
+                # stops there; the junction is not named, it is marked.
+                payload["loop"] = True
             elif ends != "dead-end":
                 payload.update(target_flags)
             steps = [
@@ -1290,17 +1279,45 @@ def _flow_statements(
     return {"entries": body} if body else {}
 
 
-def _count_flow(flow: dict) -> int:
-    """How many steps a flow document holds, counting nested cases."""
+def state_transition_count(chart: Chart) -> int:
+    """Count the transitions drawn from one state to another.
+
+    A junction is a point on a transition, not a transition of its own, so an
+    arrow leaving a state that branches at a junction counts once for each
+    state it can reach. Segments that only run between junctions, the steps of
+    a flow chart (which change no state) and a transition in or out of a
+    subchart port (which ends outside the chart's states) are left out: what is
+    counted is the chart's state graph, the same thing a reader traces on the
+    canvas, so the number is comparable between charts.
+    """
+    junctions = {junction.ssid: junction for junction in chart.junctions}
+    states = {state.ssid for state in chart.states}
+    out_edges: dict[str, list[Transition]] = defaultdict(list)
+    for transition in chart.transitions:
+        if transition.source in junctions:
+            out_edges[transition.source].append(transition)
     total = 0
-    for key in ("do", "event", "when", "comment", "to"):
-        if key in flow:
-            total += 1 if not isinstance(flow[key], list) else len(flow[key])
-            break
-    for statement in flow.get("then", []):
-        total += _count_flow(statement)
-    for case in flow.get("cases", []):
-        total += _count_flow(case)
+    for transition in chart.transitions:
+        if transition.source in junctions:
+            continue
+        reached: set[str] = set()
+        stack, seen = [transition.destination], set()
+        while stack:
+            node = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            junction = junctions.get(node)
+            if junction is not None:
+                if junction.is_history:
+                    # Entering a history junction resumes the substates of the
+                    # state that owns it, so the transition ends in that state.
+                    reached.add(junction.parent)
+                else:
+                    stack.extend(edge.destination for edge in out_edges.get(node, []))
+            elif node in states:
+                reached.add(node)
+        total += len(reached & states)
     return total
 
 
@@ -1479,8 +1496,7 @@ def chart_json(chart: Chart) -> dict:
             "states": len(chart.states),
             "functions": len(chart.functions),
             "notes": len(chart.notes),
-            "transitions": sum(len(items) for items in scoped.values())
-        + sum(_count_flow(flow) for flow in flows.values()),
+            "transitions": state_transition_count(chart),
             "events": len(chart.events),
             "data": len([item for item in chart.data if not _is_function_interface(item)]),
             "messages": messages,
