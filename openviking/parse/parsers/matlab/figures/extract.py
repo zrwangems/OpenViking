@@ -42,12 +42,17 @@ FIGURE_SCHEMA = "ov.matlab.figure/2"
 INLINE_LIMIT = 500
 
 _BOUNDARY = (
-    "Handle-tree figures (hgS_070000, everything saved before R2014b and hgsave -v6) "
-    "are read for chart type, plotted values, titles, axis labels, legend and free "
-    "text. Since R2014b the object graph is written as MCOS objects (hgS_080000 is "
-    "empty, hgM_070000/080000 carry opaque records), which this reader does not "
-    "decode yet. Pixels are never rendered and callbacks never run. MAT v7.3 "
-    "(HDF5) figures keep hgS_070000 and are read through h5py."
+    "Both save formats are read for chart type, plotted values, subplot grid, "
+    "titles, axis labels, axis ranges, legend entries and free text. Handle-tree "
+    "figures (hgS_070000: everything saved before R2014b and hgsave -v6) carry the "
+    "objects directly. From R2014b on the objects are MCOS records (hgS_080000 is "
+    "empty); their values, labels and class records are recovered by position, not "
+    "by decoding MATLAB's private property index. Two fields stay out because the "
+    "file does not store them as text: manual tick labels and the legend location. "
+    "Charts whose values MATLAB does not serialize (heatmap, pie, confusion chart, "
+    "function and patch plots) keep their type but report no series. Pixels are "
+    "never rendered and callbacks never run. MAT v7.3 (HDF5) figures keep "
+    "hgS_070000 and are read through h5py."
 )
 
 STATUS_PARSED = "parsed"
@@ -823,21 +828,20 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
                     }
                 )
 
-    counts: dict[str, int] = {}
-    for chart in charts:
-        counts[chart["type"]] = counts.get(chart["type"], 0) + 1
     status = STATUS_PARSED
     mcos_summary: dict[str, Any] | None = None
     if not charts and report.get("handle_tree_empty") and report.get("mcos_containers"):
         status = STATUS_MCOS_ONLY
-        mcos_summary = _read_mcos(source)
+        mcos_payload = _mcos_payload(source)
+        if mcos_payload is not None:
+            mcos_summary = _mcos_summary(mcos_payload)
         if mcos_summary and mcos_summary["entries"]:
             status = STATUS_MCOS_PARTIAL
-            for class_name in mcos_summary["classes"]:
-                kind = _MCOS_KINDS.get(class_name)
-                if kind:
-                    counts[kind] = counts.get(kind, 0) + 1
-            if not (
+            mcos_figures, mcos_charts, mcos_files = _mcos_charts(mcos_payload, folder)
+            figure_entries.extend(mcos_figures)
+            charts.extend(mcos_charts)
+            files.update(mcos_files)
+            if not mcos_charts and not (
                 mcos_summary.get("series")
                 or mcos_summary["series_pairs"]
                 or mcos_summary["matrices"]
@@ -848,6 +852,17 @@ def parse_figure(path: str | Path) -> tuple[dict[str, Any], dict[str, bytes]]:
                 "该文件由 R2014b 之后的 MATLAB 保存：句柄树 hgS_080000 为空，图形对象写在"
                 " __function_workspace__ 的 MCOS 记录里，当前只解到容器层"
             )
+
+    counts: dict[str, int] = {}
+    for chart in charts:
+        counts[chart["type"]] = counts.get(chart["type"], 0) + 1
+    if not charts and mcos_summary:
+        # With no plotted values the class inventory is all the file tells us.
+        for class_name in mcos_summary["classes"]:
+            kind = _MCOS_KINDS.get(class_name)
+            if kind:
+                counts[kind] = counts.get(kind, 0) + 1
+
     payload: dict[str, Any] = {
         "schema": FIGURE_SCHEMA,
         "status": status,
@@ -904,18 +919,28 @@ def _status_payload(source: Path, status: str, detail: str) -> dict[str, Any]:
     }
 
 
-def _read_mcos(source: Path) -> dict[str, Any] | None:
+def _mcos_payload(source: Path) -> Any:
     """Decode the R2025b object payload; None when the container is unreadable."""
+    from openviking.parse.parsers.matlab.figures.mcos import read_payload
+
+    try:
+        return read_payload(source)
+    except Exception:  # noqa: BLE001 - any format drift must not fail the import
+        return None
+
+
+def _mcos_summary(payload: Any) -> dict[str, Any] | None:
+    """Class inventory, candidate values and texts of the MCOS container."""
     from openviking.parse.parsers.matlab.figures.mcos import (
         candidates,
         property_names_seen,
-        read_payload,
         series,
         texts,
     )
 
+    if payload is None:
+        return None
     try:
-        payload = read_payload(source)
         found = candidates(payload)
         found["series"] = series(payload)
         found["texts"] = texts(payload)
@@ -924,3 +949,73 @@ def _read_mcos(source: Path) -> dict[str, Any] | None:
         return {"error": f"{type(exc).__name__}: {exc}", "entries": 0}
     found["entries"] = len(payload.entries)
     return found
+
+
+def _mcos_charts(
+    payload: Any, folder: str
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, bytes]]:
+    """Axes and series of an R2025b figure, in the same shape as the handle tree.
+
+    The MCOS payload stores each axes' box, ranges, labels and legend entries,
+    and each plotted object's values and class, so a figure saved by R2014b or
+    later yields the same chart entries as one with a handle tree.
+    """
+    from openviking.parse.parsers.matlab.figures.mcos import read_figure
+
+    described = read_figure(payload)
+    axes_list = described.get("axes") or []
+    if not axes_list:
+        return [], [], {}
+    charts: list[dict[str, Any]] = []
+    files: dict[str, bytes] = {}
+    for axes_index, axes in enumerate(axes_list, 1):
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for item in axes.get("series") or []:
+            kind = _MCOS_KINDS.get(item.get("class") or "", "line")
+            groups.setdefault(kind, []).append(item)
+        subplot: dict[str, Any] = {
+            "rows": axes.get("rows", 1),
+            "columns": axes.get("columns", 1),
+            "row": axes.get("row", 1),
+            "column": axes.get("column", 1),
+        }
+        if axes.get("position"):
+            subplot["position"] = [round(value, 4) for value in axes["position"]]
+        info = {
+            key: axes[key]
+            for key in ("title", "x_label", "y_label", "x_lim", "y_lim", "z_lim")
+            if axes.get(key)
+        }
+        legend = [item["name"] for item in reversed(axes.get("series") or [])]
+        for kind, items in groups.items():
+            encoded, data_files = _encode(
+                [Series(item["name"], item.get("fields") or {}) for item in items]
+            )
+            files.update({f"{folder}/{name}": data for name, data in data_files.items()})
+            charts.append(
+                {
+                    "index": len(charts) + 1,
+                    "type": kind,
+                    "type_label": KIND_LABELS.get(kind, kind),
+                    "subtype": None,
+                    "source_class": items[0].get("class"),
+                    "type_confidence": "class",
+                    "figure": 1,
+                    "axes_index": axes_index,
+                    "subplot": subplot,
+                    "axes": info,
+                    "legend": legend,
+                    "series": encoded,
+                    "annotations": [],
+                }
+            )
+    figures = [
+        {
+            "index": 1,
+            "name": described.get("name"),
+            "number": None,
+            "axes": len(axes_list),
+            "layout": described.get("layout") or {"rows": 1, "columns": 1},
+        }
+    ]
+    return figures, charts, files

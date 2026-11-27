@@ -140,8 +140,9 @@ def _source_identity(path: Path) -> dict:
 def _parse_is_incomplete(suffix: str, payload: dict) -> bool:
     """Whether the parsed payload is known to leave part of the source out."""
     if suffix == ".fig":
-        # A partial MCOS read attributes no property names yet, so the bytes stay
-        # with the parsed page; MAT v7.3 figures keep them for the same reason.
+        # Charts recovered from the MCOS payload keep the source bytes too: the
+        # reader works by position, and re-reading is cheap if a later release
+        # changes the record layout.
         return payload.get("status") not in {None, "parsed"}
     if suffix == ".mldatx":
         return bool(payload.get("unparsed_member_count"))

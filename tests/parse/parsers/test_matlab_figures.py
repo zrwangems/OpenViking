@@ -31,6 +31,7 @@ from openviking.parse.parsers.matlab.parser import MatlabParser
 _NODE = np.dtype([("type", "O"), ("handle", "O"), ("properties", "O"), ("children", "O")])
 
 GALLERY_FIXTURES = Path("tests/matlab_repos/matlab-ingest-fixture")
+GT_FIXTURES = Path("tests/matlab_repos/fig_gt")
 
 
 def _node(object_type: str, properties: dict | None = None, children=()) -> np.ndarray:
@@ -611,6 +612,71 @@ def test_hgsave_v6_corpus_file_reads_its_series():
     assert chart["series"][0]["points"] == 30
     assert chart["axes"]["title"] == "format test"
     assert chart["axes"]["x_lim"] == [0.0, 30.0]
+
+
+def _ground_truth(path: Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            values[key.strip()] = value
+    return values
+
+
+def test_r2025b_figure_matches_matlab_ground_truth():
+    """Axes, labels, limits, legend and values agree with MATLAB's own dump.
+
+    ``fig_gt.txt`` was written by MATLAB R2025b itself (openfig, then read the
+    object properties), so every field here is what the file really contains,
+    not what this reader thinks it should be.
+    """
+    truth = _ground_truth(GT_FIXTURES / "fig_gt.txt")
+    payload, _ = parse_figure(GT_FIXTURES / "fig_gt.fig")
+    assert payload["status"] == "parsed_mcos"
+    figure = payload["figures"][0]
+    assert figure["name"] == truth["figure.1.name"]
+    assert figure["axes"] == int(truth["figure.1.axes_count"])
+    assert figure["layout"] == {"rows": 2, "columns": 2}
+    charts = {chart["axes_index"]: chart for chart in payload["charts"]}
+    assert len(charts) == 4
+
+    for index in range(1, 5):
+        chart = charts[index]
+        subplot = chart["subplot"]
+        assert subplot["row"] == int(truth[f"axes.{index}.row"])
+        assert subplot["column"] == int(truth[f"axes.{index}.col"])
+        assert subplot["position"] == pytest.approx(
+            [float(value) for value in truth[f"axes.{index}.position"].split()], abs=1e-4
+        )
+        for field, key in (("title", "title"), ("x_label", "xlabel"), ("y_label", "ylabel")):
+            assert chart["axes"][field] == truth[f"axes.{index}.{key}"]
+        for field, key in (("x_lim", "xlim"), ("y_lim", "ylim")):
+            assert chart["axes"][field] == pytest.approx(
+                [float(value) for value in truth[f"axes.{index}.{key}"].split()], abs=1e-6
+            )
+        assert chart["legend"] == truth[f"axes.{index}.legend"].split("|")
+
+        count = int(truth[f"axes.{index}.series_count"])
+        assert len(chart["series"]) == count
+        for position in range(1, count + 1):
+            prefix = f"axes.{index}.series.{position}"
+            series = chart["series"][position - 1]
+            assert chart["type"] == truth[f"{prefix}.class"]
+            assert series["name"] == truth[f"{prefix}.display_name"]
+            assert series["points"] == int(truth[f"{prefix}.y_len"])
+            assert series["values"]["y"] == pytest.approx(
+                [float(value) for value in truth[f"{prefix}.y"].split()], nan_ok=True
+            )
+            assert series["values"]["x"] == pytest.approx(
+                [float(value) for value in truth[f"{prefix}.x"].split()], nan_ok=True
+            )
+
+
+def test_r2025b_yyaxis_keeps_both_y_axes():
+    """The extra y-axis of a yyaxis chart stores its values before its labels."""
+    payload, _ = parse_figure(GALLERY_FIXTURES / "fig/108_yyaxis.fig")
+    assert payload["figures"][0]["axes"] == 2
+    assert sum(len(chart["series"]) for chart in payload["charts"]) == 2
 
 
 def test_property_names_recovered_from_the_store_stream():
