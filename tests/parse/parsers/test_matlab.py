@@ -1,7 +1,6 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
 
-import asyncio
 import hashlib
 import io
 import json
@@ -15,7 +14,9 @@ import pytest
 
 from openviking.parse.output import LocalParseOutputStore, resolve_artifact_doc_root
 from openviking.parse.parsers.directory import DirectoryParser
+from openviking.parse.parsers.matlab import matlab_requested
 from openviking.parse.parsers.matlab._zip import read_xml_member
+from openviking.parse.parsers.matlab.figures import parse_figure
 from openviking.parse.parsers.matlab.keydes import KeydesLibrary
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
@@ -28,7 +29,6 @@ from openviking.parse.parsers.matlab.stateflow import (
     parse_stateflow,
     transition_label,
 )
-from openviking.parse.parsers.matlab.figures import parse_figure
 from openviking.parse.parsers.matlab.structured import (
     parse_mlapp,
     parse_mldatx,
@@ -1921,6 +1921,16 @@ async def test_directory_import_keeps_one_folder_per_slx_model(tmp_path):
     assert set(names) <= set(systems)
     for name in names:
         assert systems[name].parent.name == name
+
+
+@pytest.mark.parametrize("value", [True, "true", "TRUE", 1, "yes"])
+def test_matlab_argument_reads_as_a_declaration(value):
+    assert matlab_requested(value) is True
+
+
+@pytest.mark.parametrize("value", [False, "false", "0", "", None, 0, "off"])
+def test_matlab_argument_is_not_declared_by_a_negative_value(value):
+    assert matlab_requested(value) is False
 
 
 def test_registry_no_longer_claims_matlab_extensions():

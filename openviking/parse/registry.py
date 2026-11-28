@@ -18,7 +18,7 @@ from openviking.parse.parsers.directory import DirectoryParser
 # Import will be handled dynamically to avoid dependency issues
 from openviking.parse.parsers.html import HTMLParser
 from openviking.parse.parsers.markdown import MarkdownParser
-from openviking.parse.parsers.matlab import MATLAB_ARG, MatlabParser
+from openviking.parse.parsers.matlab import MATLAB_ARG, MatlabParser, matlab_requested
 from openviking.parse.parsers.media import AudioParser, ImageParser, VideoParser
 from openviking.parse.parsers.media.utils import is_mpeg_ts, read_mpeg_ts_probe
 from openviking.parse.parsers.pdf import PDFParser
@@ -133,7 +133,7 @@ class ParserRegistry:
 
         # Check if source looks like a file path (short enough and no newlines)
         is_potential_path = len(source_str) <= 1024 and "\n" not in source_str
-        declared_matlab = bool(kwargs.get(MATLAB_ARG))
+        declared_matlab = matlab_requested(kwargs.get(MATLAB_ARG))
 
         if is_potential_path:
             path = Path(source)

@@ -40,7 +40,7 @@ from openviking.parse.output import (
     store_for_artifact_ref,
 )
 from openviking.parse.parsers.base_parser import BaseParser
-from openviking.parse.parsers.matlab import MATLAB_ARG
+from openviking.parse.parsers.matlab import MATLAB_ARG, matlab_requested
 from openviking.parse.parsers.media.constants import MEDIA_EXTENSIONS
 from openviking.parse.parsers.upload_utils import detect_and_convert_encoding, is_text_file
 from openviking.storage.viking_fs import LS_ALL_NODES
@@ -150,7 +150,7 @@ class DirectoryParser(BaseParser):
         if not source_path.is_dir():
             raise NotADirectoryError(f"Not a directory: {source_path}")
 
-        matlab_project = bool(kwargs.get(MATLAB_ARG))
+        matlab_project = matlab_requested(kwargs.get(MATLAB_ARG))
 
         # Check if this is a git repository, delegate to CodeRepositoryParser.
         # A declared MATLAB import keeps the project parser: its tree is the
