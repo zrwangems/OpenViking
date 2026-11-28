@@ -82,8 +82,6 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         for block in document["blocks"]:
             assert set(block) == {
                 "name",
-                "block_type",
-                "source_block",
                 "key",
                 "description",
                 "ports",
@@ -1085,7 +1083,8 @@ def test_slx_block_ports_edges_and_children_have_no_generated_ids():
     # subsystem's own Inport/Outport blocks.
     space = blocks["Space Environment"]
     assert space["ports"] == {"in": ["CubeSatStates"], "out": ["Env"]}
-    assert space["source_block"] == ""
+    assert "source_block" not in space
+    assert "block_type" not in space
     assert "id" not in space
 
     edge = next(
@@ -1105,9 +1104,11 @@ def test_slx_unnamed_ports_fall_back_to_port_index():
     documents = system_json_documents(parse_slx(CONTROLLER))
     document = documents["main.json"]
     lookup = next(block for block in document["blocks"] if block["name"] == "ChargeFactor")
-    assert lookup["block_type"] == "Lookup_n-D"
+    # The block type only feeds the key; it is not written into the document.
+    assert lookup["key"] == "Lookup_n-D"
     assert lookup["ports"]["in"] == [1]
-    assert lookup["source_block"] == ""
+    assert "source_block" not in lookup
+    assert "block_type" not in lookup
 
 
 @pytest.mark.asyncio
@@ -1639,6 +1640,56 @@ def test_mlapp_keeps_classdef_and_component_tree(tmp_path):
     assert "code.m" in files
 
 
+@pytest.mark.asyncio
+async def test_mlapp_keeps_only_the_classdef_source(tmp_path):
+    scipy_io = pytest.importorskip("scipy.io")
+    path = tmp_path / "panel.mlapp"
+    document = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        "<w:body>"
+        '<w:p><w:pPr><w:pStyle w:val="code"/></w:pPr><w:r><w:t>classdef panel &lt; matlab.apps.AppBase</w:t></w:r></w:p>'
+        '<w:p><w:pPr><w:pStyle w:val="text"/></w:pPr><w:r><w:t>Battery panel</w:t></w:r></w:p>'
+        "</w:body></w:document>"
+    )
+    buffer = io.BytesIO()
+    scipy_io.savemat(buffer, {"components": {"Type": "uifigure", "Name": "panel"}})
+    with zipfile.ZipFile(path, "w") as archive:
+        archive.writestr("matlab/document.xml", document)
+        archive.writestr("appdesigner/appModel.mat", buffer.getvalue())
+
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    result = await MatlabParser().parse(path, parse_output_store=store)
+    root = Path(result.artifact_ref.root)
+    files = [
+        item.name
+        for item in root.iterdir()
+        if item.is_file() and item.name != ".artifact_manifest.json"
+    ]
+    # Only the classdef source is kept, at the root, named after the app.
+    assert files == ["panel.mlapp.m"]
+    assert "classdef panel" in (root / "panel.mlapp.m").read_text(encoding="utf-8")
+    assert not (root / "panel").exists()
+    assert result.meta["original_preserved"] is False
+
+
+@pytest.mark.asyncio
+async def test_unreadable_mlapp_keeps_the_original_file(tmp_path):
+    path = tmp_path / "broken.mlapp"
+    path.write_bytes(b"not-a-zip")
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+    result = await MatlabParser().parse(path, parse_output_store=store)
+    root = Path(result.artifact_ref.root)
+    files = [
+        item.name
+        for item in root.iterdir()
+        if item.is_file() and item.name != ".artifact_manifest.json"
+    ]
+    assert files == ["broken.mlapp"]
+    assert (root / "broken.mlapp").read_bytes() == b"not-a-zip"
+    assert result.meta["original_preserved"] is True
+
+
 def test_protected_metadata_is_verifiable(tmp_path):
     path = tmp_path / "secret.p"
     path.write_bytes(b"\x00pcode-bytes")
@@ -1923,11 +1974,12 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert variant_blocks["High power"]["key"] is None
     assert variant_blocks["High power"]["description"] == ""
     by_name = {block["name"]: block for block in root["blocks"]}
-    assert by_name["Electrical +"]["block_type"] == "ConnectionPort"
+    model_blocks = {block.name: block for block in model.blocks}
+    assert model_blocks["Electrical +"].block_type == "ConnectionPort"
     assert by_name["Electrical +"]["key"] == "ConnectionPort"
     assert by_name["Electrical +"]["description"] == ""
     assert by_name["Electrical +"]["ports"]["conn"] == ["Electrical +"]
-    assert by_name["Torque"]["block_type"] == "PMIOPort"
+    assert model_blocks["Torque"].block_type == "PMIOPort"
     assert by_name["Torque"]["ports"]["conn"] == ["Torque"]
 @pytest.mark.asyncio
 async def test_legacy_mdl_requirements_and_binary_metadata(tmp_path):

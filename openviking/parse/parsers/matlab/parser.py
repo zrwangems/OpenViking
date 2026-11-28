@@ -130,7 +130,6 @@ _FOLDER_SUFFIXES = {
     ".mdl",
     ".sldd",
     ".mlx",
-    ".mlapp",
     ".mat",
     ".fig",
     ".mdf",
@@ -389,7 +388,7 @@ class MatlabParser(BaseParser):
         writer = await create_parse_artifact_writer(
             output_store,
             viking_fs=self._get_viking_fs() if output_store is None else None,
-            root_type="file" if suffix in _ORIGINAL_ONLY_SUFFIXES else "dir",
+            root_type="file" if suffix in _ORIGINAL_ONLY_SUFFIXES or suffix == ".mlapp" else "dir",
         )
         warnings: list[str] = []
         try:
@@ -553,7 +552,26 @@ class MatlabParser(BaseParser):
                     "source_sha256": hashlib.sha256(data).hexdigest(),
                 }
                 title = path.stem
-            elif suffix in {".sldd", ".mlx", ".fig", ".mldatx", ".slreqx", ".slmx", ".mlapp"}:
+            elif suffix == ".mlapp":
+                # An app's only searchable content is its classdef source. Write
+                # just that, one file at the artifact root, named after the
+                # source (``panel.mlapp.m``) so its origin format stays visible.
+                # An app whose source cannot be read keeps its original bytes.
+                payload, _ = await asyncio.to_thread(parse_mlapp, path)
+                code = payload.get("code") or ""
+                preserved = not code
+                if code:
+                    await writer.write_text(f"{path.name}.m", code.rstrip() + "\n")
+                else:
+                    await writer.write_bytes(path.name, await asyncio.to_thread(path.read_bytes))
+                meta = {
+                    "matlab_format": "mlapp",
+                    "structured_format": payload.get("schema", ""),
+                    "original_preserved": preserved,
+                    **_source_identity(path),
+                }
+                title = path.stem
+            elif suffix in {".sldd", ".mlx", ".fig", ".mldatx", ".slreqx", ".slmx"}:
                 payload: dict = {}
                 auxiliary: dict[str, bytes] = {}
                 if suffix == ".sldd":
@@ -566,8 +584,6 @@ class MatlabParser(BaseParser):
                     payload = await asyncio.to_thread(parse_mldatx, path)
                 elif suffix in {".slreqx", ".slmx"}:
                     payload = await asyncio.to_thread(parse_requirement_set, path)
-                else:
-                    payload, auxiliary = await asyncio.to_thread(parse_mlapp, path)
                 folder = _output_folder(path)
                 # Only parsed content is kept: the archive itself has no search
                 # value and can be tens of megabytes. When the parse reports
@@ -625,11 +641,6 @@ class MatlabParser(BaseParser):
                     await writer.write_text(
                         f"{folder}/links.jsonl",
                         "\n".join(json.dumps(row, ensure_ascii=False) for row in links) + "\n",
-                    )
-                else:
-                    await writer.write_text(
-                        f"{folder}/app.json",
-                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                     )
                 meta = {
                     "matlab_format": suffix.removeprefix("."),

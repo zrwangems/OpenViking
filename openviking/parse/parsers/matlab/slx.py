@@ -292,7 +292,8 @@ def system_json_documents(
     the primary representation: each block carries the key its description was
     rendered from, that description in the requested language, and its ports (by
     name when the file states one, otherwise by port index); each line carries
-    one source endpoint and every destination it fans out to.
+    one source endpoint and every destination it fans out to. The block type and
+    library source stay internal: they only feed the key, and are not written.
     """
     documents: dict[str, dict] = {}
     keydes = library if library is not None else default_library()
@@ -459,8 +460,6 @@ def _system_json(
         blocks.append(
             {
                 "name": block.name,
-                "block_type": block.block_type,
-                "source_block": block.source_block,
                 "key": key,
                 "description": description or "",
                 "ports": block_ports,

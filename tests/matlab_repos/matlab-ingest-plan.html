@@ -220,7 +220,7 @@
 <tr class="row" data-key="slx" data-ext=".slx" tabindex="0" role="button"><td class="ext"><code>.slx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>模型目录</code><span class="to">→</span><span class="act">按系统解包成 JSON</span></div></td><td class="out">各系统 main.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/slx.py</code><span class="fn">parse_slx() · system_json_documents() · _system_json()</span><span class="stage">parser.py:155</span></td></tr>
 <tr class="row" data-key="sldd" data-ext=".sldd" tabindex="0" role="button"><td class="ext"><code>.sldd</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span><span class="lab cat" style="color:#b45309;background:#fdf3e3;border-color:#b4530933">数据/目标二进制</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">条目 JSONL + 数值 CSV</span></div></td><td class="out">entries.jsonl + *.csv<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_sldd_tree() · sldd_entry_documents() · _bus_element_rows()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mlx" data-ext=".mlx" tabindex="0" role="button"><td class="ext"><code>.mlx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析·不留原件</span></div></td><td class="out">notebook.json + outputs/<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlx_notebook() · _mlx_blocks() · _mlx_output_blocks()</span><span class="stage">parser.py:245</span></td></tr>
-<tr class="row" data-key="mlapp" data-ext=".mlapp" tabindex="0" role="button"><td class="ext"><code>.mlapp</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析·不留原件</span></div></td><td class="out">code.m + app.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlapp()</span><span class="stage">parser.py:245</span></td></tr>
+<tr class="row" data-key="mlapp" data-ext=".mlapp" tabindex="0" role="button"><td class="ext"><code>.mlapp</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析·不留原件</span></div></td><td class="out">HevApp.mlapp.m<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/structured.py</code><span class="fn">parse_mlapp()</span><span class="stage">parser.py:245</span></td></tr>
 <tr class="row" data-key="mlproj" data-ext=".mlproj" tabindex="0" role="button"><td class="ext"><code>.mlproj</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/packages.py</code><span class="fn">package_metadata() · _project_metadata() ← archive_manifest()</span><span class="stage">parser.py:420</span></td></tr>
 <tr class="row" data-key="mltbx" data-ext=".mltbx" tabindex="0" role="button"><td class="ext"><code>.mltbx</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/packages.py</code><span class="fn">package_metadata() · _addon() ← archive_manifest()</span><span class="stage">parser.py:420</span></td></tr>
 <tr class="row" data-key="mlappinstall" data-ext=".mlappinstall" tabindex="0" role="button"><td class="ext"><code>.mlappinstall</code></td><td class="labels"><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span></td><td class="locs"><div class="loc"><code>工程目录</code><span class="to">→</span><span class="act">按包解析</span></div></td><td class="out">manifest.json<span class="hint">右栏看细节 →</span></td><td class="code"><code>parse/parsers/matlab/packages.py</code><span class="fn">package_metadata() · _addon() ← archive_manifest()</span><span class="stage">parser.py:420</span></td></tr>
@@ -380,20 +380,16 @@ end</pre>
   &quot;subsystem_types&quot;: [],
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
-    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Inport&quot;,
+    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;key&quot;: &quot;Inport&quot;,
      &quot;description&quot;: &quot;为子系统或外部输入创建输入端口；输出 1 路；按 number 指定图标显示；1 指定端口在父模块上的位置…&quot;,
      &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]}},
-    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
-     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
+    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
      &quot;description&quot;: &quot;按 J 指定的转动惯量 5e-6 将输入扭矩换算成转速…&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]}},
-    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Outport&quot;,
+    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;key&quot;: &quot;Outport&quot;,
      &quot;description&quot;: &quot;为子系统或模型创建输出端口；输入 1 路…&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]}},
-    {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
+    {&quot;name&quot;: &quot;Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
      &quot;description&quot;: &quot;终止未连接的输出端口，输入 1 路、无输出。&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1]}}
   ],
@@ -1153,7 +1149,7 @@ save_format=v7</pre>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/slx.py</code><br>parse_slx() · system_json_documents() · _system_json()<br><code>openviking/parse/parsers/matlab/keydes.py</code><br>KeydesLibrary.describe()（key → 模板 → 描述）<br><code>openviking/parse/parsers/matlab/block_keys.py</code><br>block_key() · key_rule()<br>模板：<code>openviking/parse/parsers/matlab/slxkeydes/{en,zh}</code></p>
   <p class="note">分发位置：<code>parser.py:155</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。blocks 只有 name/block_type/source_block/key/description/ports，children 只有 name/path/system_ref/type，不写 b20 这类内部 id。每个块的 key 由 block_keys.py 按 BlockType/SourceType/SourceBlock 算出，keydes.py 用该 key 取 slxkeydes 模板（en/zh 各 3,372 个），把实例参数值填进模板占位符得到 description；没有模板的块 description 留空。parse_slx() 只做确定性的 XML 读取：读不到的端口名、source_block、标签一律留空，不做任何推断。</p>
+  <p class="note">解包 simulink/systems/*.xml 建 System/Block/Edge；Stateflow 由 stateflow.py:66 解出后挂到对应系统 JSON 的 stateflow 字段。每个系统一个 JSON，子系统落到 <code>&lt;system&gt;/main.json</code>。blocks 只有 name/key/description/ports，块类型和库来源只用来算 key、不写进 JSON，children 只有 name/path/system_ref/type，不写 b20 这类内部 id。每个块的 key 由 block_keys.py 按 BlockType/SourceType/SourceBlock 算出，keydes.py 用该 key 取 slxkeydes 模板（en/zh 各 3,372 个），把实例参数值填进模板占位符得到 description；没有模板的块 description 留空。parse_slx() 只做确定性的 XML 读取：读不到的端口名、source_block、标签一律留空，不做任何推断。</p>
   <h3>产出</h3>
   <p><code>各系统 main.json</code></p>
   <h3>案例样子</h3>
@@ -1165,20 +1161,16 @@ save_format=v7</pre>
   &quot;subsystem_types&quot;: [],
   &quot;execution&quot;: {},
   &quot;blocks&quot;: [
-    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;block_type&quot;: &quot;Inport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Inport&quot;,
+    {&quot;name&quot;: &quot;BusVolt&quot;, &quot;key&quot;: &quot;Inport&quot;,
      &quot;description&quot;: &quot;为子系统或外部输入创建输入端口；输出 1 路；按 number 指定图标显示；1 指定端口在父模块上的位置…&quot;,
      &quot;ports&quot;: {&quot;out&quot;: [&quot;BusVolt&quot;]}},
-    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;block_type&quot;: &quot;Reference&quot;,
-     &quot;source_block&quot;: &quot;autolibmappedmotor/Mapped Motor&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
+    {&quot;name&quot;: &quot;Mapped Generator&quot;, &quot;key&quot;: &quot;Mapped Motor&quot;,
      &quot;description&quot;: &quot;按 J 指定的转动惯量 5e-6 将输入扭矩换算成转速…&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1, 2, 3], &quot;out&quot;: [1, 2, 3]}},
-    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;block_type&quot;: &quot;Outport&quot;,
-     &quot;source_block&quot;: &quot;&quot;, &quot;key&quot;: &quot;Outport&quot;,
+    {&quot;name&quot;: &quot;GenTrq&quot;, &quot;key&quot;: &quot;Outport&quot;,
      &quot;description&quot;: &quot;为子系统或模型创建输出端口；输入 1 路…&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [&quot;GenTrq&quot;]}},
-    {&quot;name&quot;: &quot;Terminator&quot;, &quot;block_type&quot;: &quot;Terminator&quot;,
-     &quot;source_block&quot;: &quot;built-in/Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
+    {&quot;name&quot;: &quot;Terminator&quot;, &quot;key&quot;: &quot;Terminator&quot;,
      &quot;description&quot;: &quot;终止未连接的输出端口，输入 1 路、无输出。&quot;,
      &quot;ports&quot;: {&quot;in&quot;: [1]}}
   ],
@@ -1273,22 +1265,22 @@ np.load(&quot;0008_PlntEngCIGIMepMap.npy&quot;) → array([[0., 0., ...], [15868
   <p class="bound">输出是保存时快照，不保证和当前代码一致；交互控件状态不重放。一个图被多个代码块修改时，按 output.xml 的 lineNumbers 归到最后一个覆盖该行的代码块。</p>
 </div>
 <div class="dsrc" id="d-mlapp" hidden>
-  <p class="lead"><b>解包直读。</b>OPC 解包读 document.xml 的 classdef 和 appModel.mat 组件树。</p>
+  <p class="lead"><b>解包直读。</b>OPC 解包只读 document.xml 里的 classdef 源码，其余一概不落。</p>
   <div class="meta">
     <span class="form">ZIP/OPC</span><span class="lab cat" style="color:#1d4ed8;background:#e8eefc;border-color:#1d4ed833">ZIP/工具容器</span>
   </div>
   <h3>位置与处理</h3>
   <table class="loctab"><thead><tr><th>位置</th><th>标签</th><th>处理</th></tr></thead><tbody><tr><td><code>工程目录</code></td><td>—</td><td>按包解析</td></tr></tbody></table>
   <h3>解析方式</h3>
-  <ol><li>按 OPC 解包，读 matlab/document.xml 里的 classdef 源码</li><li>读 appdesigner/appModel.mat 的组件树：名称、类型、父子关系和布局属性</li><li>不留原件：只保存 code.m 与 app.json；组件树读不出时只留代码并标边界</li></ol>
+  <ol><li>按 OPC 解包，读 matlab/document.xml 里的 classdef 源码</li><li>只把这段源码写成一个文件，放在和源文件同层的位置，不建文件夹、不写 app.json、不留组件树</li><li>文件名带上原格式后缀：<code>&lt;原名&gt;.mlapp.m</code>，一眼看得出源文件是 .mlapp</li><li>源码读不出来（不是 ZIP、没有 document.xml）时保留原 .mlapp</li></ol>
   <h3>处理代码</h3>
   <p class="codebox"><code>openviking/parse/parsers/matlab/structured.py</code><br>parse_mlapp()</p>
   <p class="note">分发位置：<code>parser.py:245</code>。模块都在 <code>openviking/parse/parsers/</code> 下；行号对应 commit 62029f696。</p>
-  <p class="note">抽 Live Code 源码写 code.m，App 结构写 app.json，原 .mlapp 一并保留。</p>
+  <p class="note">抽 Live Code 源码写成 &lt;原名&gt;.mlapp.m，别的都不留；读不出源码时保留原 .mlapp。</p>
   <h3>产出</h3>
-  <p><code>code.m + app.json</code></p>
+  <p><code>HevApp.mlapp.m</code></p>
   <h3>案例样子</h3>
-  <pre>code.m
+  <pre>HevApp.mlapp.m
 classdef HevApp &lt; matlab.apps.AppBase
   properties (Access = public)
     UIFigure  matlab.ui.Figure
@@ -1299,18 +1291,9 @@ classdef HevApp &lt; matlab.apps.AppBase
       % ...
     end
   end
-end
-
-app.json
-{
-  &quot;components&quot;: [
-    {&quot;name&quot;: &quot;UIFigure&quot;, &quot;type&quot;: &quot;figure&quot;, &quot;parent&quot;: null},
-    {&quot;name&quot;: &quot;UIAxes&quot;, &quot;type&quot;: &quot;axes&quot;, &quot;parent&quot;: &quot;UIFigure&quot;},
-    {&quot;name&quot;: &quot;StartButton&quot;, &quot;type&quot;: &quot;button&quot;, &quot;parent&quot;: &quot;UIFigure&quot;}
-  ]
-}</pre>
+end</pre>
   <h3>AI 能读到什么</h3>
-  <p>App 的完整 classdef 代码；能读就读组件树。</p>
+  <p>App 的完整 classdef 代码，就这一个文件。</p>
   <h3>边界</h3>
   <p class="bound">mlapp 是未公开、随版本变化的格式；不重建 GUI，版本不兼容时不硬猜。</p>
 </div>
