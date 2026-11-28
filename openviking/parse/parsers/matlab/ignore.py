@@ -33,6 +33,11 @@ inside the imported tree. Unresolved expressions (``getenv``, ``tempdir``,
 same holds when the folders were changed through the Simulink preferences UI:
 their contents are still pruned because ``slprj/``, ``*_rtw/`` and ``*.slxc``
 are recognised on their own.
+
+These rules exist only for an import the caller declared as a MATLAB project
+(``args.matlab=true``). Nothing here inspects the tree to decide that it is
+one: a directory whose files happen to be Simulink models is imported as an
+ordinary directory unless the flag was given.
 """
 
 from __future__ import annotations
@@ -45,14 +50,12 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 # Derived folder names, matched case-insensitively at any depth below the import
-# root. ``slprj``/``sfprj`` and ``*_rtw`` are Simulink-specific, so they are
-# always skipped; ``codegen`` is also used by other toolchains and only counts
-# inside a MATLAB/Simulink project.
+# root. ``slprj``/``sfprj``, ``*_rtw`` and ``codegen`` are Simulink's own output
+# folders, so they only apply inside a declared MATLAB project.
 DEFAULT_BUILD_DIR_NAMES = frozenset({"slprj", "sfprj"})
 DEFAULT_BUILD_DIR_GLOBS = ("*_rtw",)
 PROJECT_BUILD_DIR_NAMES = frozenset({"codegen"})
 DEFAULT_DERIVED_FILE_GLOBS = ("*.slxc", "*.autosave")
-PROJECT_DERIVED_FILE_GLOBS: tuple[str, ...] = ()
 
 # MATLAB keeps per-project file state (categories, target paths, digests) in
 # ``<project>/resources/project/<hash>/*.xml``. Thousands of tiny XML files
@@ -60,29 +63,6 @@ PROJECT_DERIVED_FILE_GLOBS: tuple[str, ...] = ()
 PROJECT_RESOURCES_DIR = "resources"
 PROJECT_RESOURCES_STATE_DIR = "project"
 
-# Files that make an arbitrary directory a MATLAB/Simulink project. ``.m`` and
-# ``.mat`` alone are ambiguous (Objective-C, generic binary data), so only
-# model, dictionary, Live Script and project formats count.
-PROJECT_MARKER_SUFFIXES = frozenset(
-    {
-        ".slx",
-        ".mdl",
-        ".sldd",
-        ".slxp",
-        ".mdlp",
-        ".mlx",
-        ".mlapp",
-        ".mlproj",
-        ".slreqx",
-        ".slmx",
-        ".mldatx",
-        ".sfx",
-        ".ssc",
-        ".sscp",
-    }
-)
-
-_PROJECT_SCAN_MAX_ENTRIES = 20000
 _SCRIPT_MAX_BYTES = 2 * 1024 * 1024
 _SCRIPT_MAX_FILES = 2000
 _MAX_BUILD_FOLDERS = 64
@@ -95,15 +75,15 @@ _FOLDER_FIELDS = {"cachefolder": "cache", "codegenfolder": "codegen"}
 class MatlabBuildIgnore:
     """Filters derived MATLAB/Simulink folders and cache files for one import root.
 
-    Folder names learned from ``Simulink.fileGenControl`` and the generic
-    ``codegen/`` name are resolved lazily once per import and cached, so the
-    tree is inspected at most once even though every directory is checked.
+    Only built for an import the caller declared as a MATLAB project. Folder
+    names learned from ``Simulink.fileGenControl`` are resolved lazily once per
+    import and cached, so the tree is inspected at most once even though every
+    directory is checked.
     """
 
     def __init__(self, root: Path) -> None:
         self.root = Path(root)
-        self._is_matlab_project: Optional[bool] = None
-        self._custom_folders: Tuple[Tuple[str, ...], ...] = ()
+        self._custom_folders: Optional[Tuple[Tuple[str, ...], ...]] = None
 
     def is_build_dir(self, path: Path) -> bool:
         """True for slprj/, <model>_*_rtw/, codegen/ and detected custom folders."""
@@ -112,53 +92,32 @@ class MatlabBuildIgnore:
             fnmatch.fnmatch(name, pattern) for pattern in DEFAULT_BUILD_DIR_GLOBS
         ):
             return True
-        if not self.is_matlab_project():
-            return False
         if name in PROJECT_BUILD_DIR_NAMES:
             return True
         parts = _relative_parts(path, self.root)
         return any(
             len(parts) >= len(folder) and parts[-len(folder) :] == folder
-            for folder in self._custom_folders
+            for folder in self._folders()
         )
 
     def is_derived_file(self, path: Path) -> bool:
         """True for stand-alone build artifacts such as ``model.slxc``."""
         name = path.name.casefold()
-        if any(fnmatch.fnmatch(name, pattern) for pattern in DEFAULT_DERIVED_FILE_GLOBS):
-            return True
-        return self.is_matlab_project() and any(
-            fnmatch.fnmatch(name, pattern) for pattern in PROJECT_DERIVED_FILE_GLOBS
-        )
+        return any(fnmatch.fnmatch(name, pattern) for pattern in DEFAULT_DERIVED_FILE_GLOBS)
 
-    def is_matlab_project(self) -> bool:
-        """Whether the import root contains MATLAB/Simulink project files."""
-        if self._is_matlab_project is None:
-            self._is_matlab_project = looks_like_matlab_project(self.root)
-            if self._is_matlab_project:
-                self._custom_folders = detect_build_folders(self.root)
-        return self._is_matlab_project
+    def _folders(self) -> Tuple[Tuple[str, ...], ...]:
+        if self._custom_folders is None:
+            self._custom_folders = detect_build_folders(self.root)
+        return self._custom_folders
 
 
 def matlab_ignore_for(root: Path) -> MatlabBuildIgnore:
-    """Return the build/cache rules for an import root.
+    """Return the build/cache rules for a declared MATLAB import root.
 
-    The default folder and cache-file patterns apply to any directory import;
-    MATLAB-specific additions (``codegen/`` and the folders named in
-    ``Simulink.fileGenControl``) activate when the tree contains a project.
-    Editor backups (``*.asv``) are not cache files but a stale copy of a source
-    file, so the ingest table excludes them instead of the scanner.
+    Callers create this only when the importer asked for the MATLAB pipeline
+    (``args.matlab=true``); there is no detection step behind it.
     """
     return MatlabBuildIgnore(Path(root).resolve())
-
-
-def looks_like_matlab_project(root: Path) -> bool:
-    """Bounded search of the whole tree for MATLAB/Simulink project markers."""
-    root = Path(root)
-    for path in _walk_files(root, limit=_PROJECT_SCAN_MAX_ENTRIES):
-        if path.suffix.casefold() in PROJECT_MARKER_SUFFIXES:
-            return True
-    return False
 
 
 def detect_build_folders(root: Path) -> Tuple[Tuple[str, ...], ...]:

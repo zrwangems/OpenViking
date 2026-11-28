@@ -90,7 +90,7 @@ async def test_directory_import_writes_multilabel_manifest(tmp_path):
     )
 
     store = LocalParseOutputStore(tmp_path / "artifacts")
-    result = await DirectoryParser().parse(project, parse_output_store=store)
+    result = await DirectoryParser().parse(project, matlab=True, parse_output_store=store)
     root = Path(result.artifact_ref.root)
 
     import json
@@ -210,7 +210,7 @@ def test_app_screenshot_is_only_flagged_as_possible_redundant():
 
 
 def test_fixture_account_and_project_table():
-    result = scan_directory(SAMPLE)
+    result = scan_directory(SAMPLE, matlab_project=True)
 
     assert len(result.processable) == 1146
     assert len(result.aggregated) == 2204
@@ -236,6 +236,7 @@ def test_fixture_account_and_project_table():
         "none",
     }
     assert all(row.get("target") for row in categorized)
+
 
 def test_editor_backup_is_excluded_and_workbook_is_read_as_cells():
     """Editor leftovers stay out of the tree; a spreadsheet is parsed, not copied."""

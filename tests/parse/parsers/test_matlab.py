@@ -1,6 +1,7 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
 
+import asyncio
 import hashlib
 import io
 import json
@@ -1811,6 +1812,7 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     store = LocalParseOutputStore(tmp_path)
     result = await DirectoryParser().parse(
         SAMPLE,
+        matlab=True,
         parse_output_store=store,
         strict=True,
         preserve_structure=True,
@@ -1906,6 +1908,7 @@ async def test_directory_import_keeps_one_folder_per_slx_model(tmp_path):
 
     result = await DirectoryParser().parse(
         source,
+        matlab=True,
         parse_output_store=LocalParseOutputStore(tmp_path / "artifacts"),
         preserve_structure=True,
     )
@@ -1920,10 +1923,49 @@ async def test_directory_import_keeps_one_folder_per_slx_model(tmp_path):
         assert systems[name].parent.name == name
 
 
-def test_registry_routes_all_matlab_extensions():
+def test_registry_no_longer_claims_matlab_extensions():
+    """No extension selects the MATLAB parser by itself any more."""
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
-        assert isinstance(registry.get_parser_for_file(f"model{suffix}"), MatlabParser)
+        assert registry.get_parser_for_file(f"model{suffix}") is None
+    # It is still registered, just reachable by name.
+    assert isinstance(registry.get_parser("matlab"), MatlabParser)
+
+
+@pytest.mark.asyncio
+async def test_explicit_arg_routes_one_file_to_the_matlab_parser(tmp_path):
+    path = tmp_path / "notes.m"
+    path.write_text("function y=notes()\ny=1;\nend\n", encoding="utf-8")
+    store = LocalParseOutputStore(tmp_path / "artifacts")
+
+    declared = await ParserRegistry().parse(path, matlab=True, parse_output_store=store)
+    ordinary = await ParserRegistry().parse(path, parse_output_store=store)
+
+    assert declared.parser_name == "MatlabParser"
+    assert ordinary.parser_name != "MatlabParser"
+
+
+@pytest.mark.asyncio
+async def test_directory_without_the_argument_imports_nothing_as_matlab(tmp_path):
+    """A tree of models is an ordinary directory unless args.matlab=true was given."""
+    plant = SAMPLE / "model" / "VirtualVehicle" / "PassVeh" / "Plant"
+    source = tmp_path / "plant"
+    source.mkdir()
+    shutil.copyfile(plant / "SteeringSystem.slx", source / "SteeringSystem.slx")
+    (source / "notes.m").write_text("x = 1;\n", encoding="utf-8")
+
+    result = await DirectoryParser().parse(
+        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+    )
+    root = Path(result.artifact_ref.root)
+
+    assert not list(root.rglob("main.json"))
+    assert not (root / "plant" / "matlab-classification.json").exists()
+    assert "matlab_classification" not in result.meta
+    processed = {item["path"]: item["parser"] for item in result.meta["processed_files"]}
+    # .m is ordinary text here: written as the file itself, never as a model page.
+    assert processed["notes.m"] == "direct"
+    assert [item["path"] for item in result.meta["unsupported_files"]] == ["SteeringSystem.slx"]
 
 
 def _write_semantic_slx(path: Path):
@@ -2163,7 +2205,9 @@ async def test_project_spreadsheet_is_routed_to_the_project_parser(tmp_path):
         source / "MappedMotorDataset.xlsx",
     )
     result = await DirectoryParser().parse(
-        source, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+        source,
+        matlab=True,
+        parse_output_store=LocalParseOutputStore(tmp_path / "artifacts"),
     )
     root = Path(result.artifact_ref.root) / "plant"
     workbook = json.loads(
@@ -2282,7 +2326,9 @@ async def test_project_archive_members_already_in_the_tree_are_not_duplicated(tm
         bundle.writestr("fsroot/bin/engine.dll", b"MZ\x00\x00")
 
     result = await DirectoryParser().parse(
-        project, parse_output_store=LocalParseOutputStore(tmp_path / "artifacts")
+        project,
+        matlab=True,
+        parse_output_store=LocalParseOutputStore(tmp_path / "artifacts"),
     )
     root = Path(result.artifact_ref.root) / "proj" / "packages" / "ExportedProject"
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))

@@ -215,6 +215,27 @@ async def test_accepts_parse_mode_inside_args_without_mutating_input(
 
 
 @pytest.mark.asyncio
+async def test_matlab_argument_reaches_the_parser_kwargs(
+    service: ResourceService, ctx: RequestContext
+):
+    """MATLAB import is opt-in: the args key is forwarded as given."""
+    args = {"matlab": True}
+
+    await service.add_resource(
+        path="/test/path",
+        ctx=ctx,
+        to="viking://resources/test",
+        args=args,
+    )
+
+    assert args == {"matlab": True}
+    processor = service._resource_processor
+    assert processor.calls[-1]["matlab"] is True
+    # A watch round repeats the import, so the flag has to survive into its kwargs.
+    assert service._watch_processor_kwargs({"matlab": True}, None, "replace") == {"matlab": True}
+
+
+@pytest.mark.asyncio
 async def test_rejects_invalid_parse_mode(service: ResourceService, ctx: RequestContext):
     with pytest.raises(InvalidArgumentError, match="parse_mode"):
         await service.add_resource(

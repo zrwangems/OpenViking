@@ -18,7 +18,7 @@ from openviking.parse.parsers.directory import DirectoryParser
 # Import will be handled dynamically to avoid dependency issues
 from openviking.parse.parsers.html import HTMLParser
 from openviking.parse.parsers.markdown import MarkdownParser
-from openviking.parse.parsers.matlab import MatlabParser
+from openviking.parse.parsers.matlab import MATLAB_ARG, MatlabParser
 from openviking.parse.parsers.media import AudioParser, ImageParser, VideoParser
 from openviking.parse.parsers.media.utils import is_mpeg_ts, read_mpeg_ts_probe
 from openviking.parse.parsers.pdf import PDFParser
@@ -63,7 +63,11 @@ class ParserRegistry:
             ),
         )
         self._register("zip", ZipParser())
-        self._register("matlab", MatlabParser())
+        # MATLAB is reachable by name only, never by extension: ``.m``, ``.mat``,
+        # ``.slx`` and the rest are shared with other languages, other tools and
+        # plain data, so the MATLAB pipeline starts only when the importer asks
+        # for it with ``args.matlab=true``.
+        self._parsers["matlab"] = MatlabParser()
         self._register("directory", DirectoryParser())
 
         self._register("image", ImageParser(config=self._parser_configs.get("image")))
@@ -110,8 +114,10 @@ class ParserRegistry:
         """
         Parse a local file or content string.
 
-        Automatically selects parser based on file extension.
-        Falls back to text parser for unknown types.
+        Selects the parser by file extension, except for the parsers that are
+        opt-in: ``matlab`` is used only when the caller passes
+        ``matlab=True`` (``args.matlab=true`` on the import request) and the
+        file is one of its formats. Falls back to the text parser otherwise.
 
         NOTE: For URL handling, use AccessorRegistry in the two-layer architecture.
         This registry only handles local files and raw content.
@@ -127,6 +133,7 @@ class ParserRegistry:
 
         # Check if source looks like a file path (short enough and no newlines)
         is_potential_path = len(source_str) <= 1024 and "\n" not in source_str
+        declared_matlab = bool(kwargs.get(MATLAB_ARG))
 
         if is_potential_path:
             path = Path(source)
@@ -139,6 +146,11 @@ class ParserRegistry:
                     raise ValueError(
                         f"Source is a directory but DirectoryParser is not registered: {path}"
                     )
+
+                if declared_matlab:
+                    matlab_parser = self._parsers.get("matlab")
+                    if matlab_parser is not None and matlab_parser.can_parse(path):
+                        return await matlab_parser.parse(path, **kwargs)
 
                 parser = self.get_parser_for_file(path)
                 if parser:

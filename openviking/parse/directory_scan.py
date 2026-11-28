@@ -135,7 +135,7 @@ def _should_skip_directory(
 
 
 def _matlab_build_ignore(root: Path):
-    """MATLAB build/cache rules when *root* is a MATLAB/Simulink project, else None."""
+    """MATLAB build/cache rules for a declared MATLAB import, else None."""
     from openviking.parse.parsers.matlab.ignore import matlab_ignore_for
 
     try:
@@ -261,6 +261,7 @@ def scan_directory(
     additional_can_process: Optional[Callable[[Path], bool]] = None,
     max_files: Optional[int] = None,
     max_depth: Optional[int] = None,
+    matlab_project: bool = False,
 ) -> DirectoryScanResult:
     """
     Traverse directory tree and classify every file (phase-one validation).
@@ -289,6 +290,10 @@ def scan_directory(
             outside ParserRegistry.
         max_files: Optional maximum number of selected files admitted by the scan.
         max_depth: Optional maximum nested directory depth below the root.
+        matlab_project: True only when the importer declared this directory a
+            MATLAB/Simulink project (``args.matlab=true``). Nothing is detected:
+            without the flag no MATLAB rule applies and the tree is scanned as an
+            ordinary directory.
 
     Returns:
         DirectoryScanResult with processable, unsupported, warnings.
@@ -318,8 +323,8 @@ def scan_directory(
     include_patterns = _parse_patterns(include)
     exclude_patterns = _parse_patterns(exclude)
     gitignore_matcher = GitignoreMatcher(root)
-    matlab_ignore = _matlab_build_ignore(root)
-    matlab_project = bool(matlab_ignore and matlab_ignore.is_matlab_project())
+    matlab_ignore = _matlab_build_ignore(root) if matlab_project else None
+    matlab_project = matlab_ignore is not None
 
     # Normalize ignore_dirs:
     # - If caller passed a comma-separated string (common from CLI/HTTP),

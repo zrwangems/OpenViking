@@ -18,7 +18,7 @@ def test_text_and_binary_project_extensions_are_classified(tmp_path):
     (tmp_path / "solver.mexw32").write_bytes(b"MZ\x00\x00")
     (tmp_path / "old.asv").write_text("function y=f()\ny=1;\nend\n", encoding="utf-8")
 
-    result = scan_directory(tmp_path, strict=True)
+    result = scan_directory(tmp_path, strict=True, matlab_project=True)
 
     assert result.unsupported == []
     assert {entry.path.name for entry in result.processable} >= {

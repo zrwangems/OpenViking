@@ -40,6 +40,7 @@ from openviking.parse.output import (
     store_for_artifact_ref,
 )
 from openviking.parse.parsers.base_parser import BaseParser
+from openviking.parse.parsers.matlab import MATLAB_ARG
 from openviking.parse.parsers.media.constants import MEDIA_EXTENSIONS
 from openviking.parse.parsers.upload_utils import detect_and_convert_encoding, is_text_file
 from openviking.storage.viking_fs import LS_ALL_NODES
@@ -136,7 +137,9 @@ class DirectoryParser(BaseParser):
             instruction: Processing instruction (forwarded where applicable).
             **kwargs: Extra options forwarded to ``scan_directory``:
                 ``strict``, ``ignore_dirs``, ``include``, ``exclude``,
-                ``directly_upload_media``.
+                ``directly_upload_media``. ``matlab=True`` (the import's
+                ``args.matlab=true``) is the only way this directory is treated
+                as a MATLAB/Simulink project; nothing is detected.
 
         Returns:
             ``ParseResult`` with ``temp_dir_path`` pointing to VikingFS temp.
@@ -147,8 +150,12 @@ class DirectoryParser(BaseParser):
         if not source_path.is_dir():
             raise NotADirectoryError(f"Not a directory: {source_path}")
 
-        # Check if this is a git repository, delegate to CodeRepositoryParser
-        if await self._is_git_repository(source_path):
+        matlab_project = bool(kwargs.get(MATLAB_ARG))
+
+        # Check if this is a git repository, delegate to CodeRepositoryParser.
+        # A declared MATLAB import keeps the project parser: its tree is the
+        # project, not a symbol index of the checkout.
+        if not matlab_project and await self._is_git_repository(source_path):
             logger.debug(
                 f"Directory {source_path} is a git repository, delegating to CodeRepositoryParser"
             )
@@ -216,6 +223,7 @@ class DirectoryParser(BaseParser):
                 if plan or understanding_limits_enabled
                 else None,
                 max_depth=directory_config.max_depth if understanding_limits_enabled else None,
+                matlab_project=matlab_project,
             )
             directly_upload_media = kwargs.get("directly_upload_media", True)
             preserve_structure = kwargs.get("preserve_structure")
@@ -266,6 +274,13 @@ class DirectoryParser(BaseParser):
             from openviking.parse.parsers.matlab.classification import SUMMARY_PARSE
             from openviking.parse.parsers.matlab.parser import PROJECT_SHARED_EXTENSIONS
 
+            # A declared MATLAB import hands every project format to its parser;
+            # the global registry claims none of those extensions itself.
+            project_parser = None
+            if scan_result.matlab_project:
+                get_parser = getattr(registry, "get_parser", None)
+                project_parser = get_parser("matlab") if get_parser else None
+
             for index, cf in enumerate(processable_files):
                 entry = entry_map.get(cf.path)
                 remote = entry is not None and entry.kind == "url"
@@ -281,18 +296,14 @@ class DirectoryParser(BaseParser):
                 )
                 use_understanding = bool(split_content and configured_for_understanding)
                 native_parser = None if use_understanding else self._assign_parser(cf, registry)
-                if (
-                    native_parser is not None
-                    and scan_result.matlab_project
-                    and Path(cf.path).suffix.lower() in PROJECT_SHARED_EXTENSIONS
+                if project_parser is not None and (
+                    project_parser.can_parse(cf.path)
+                    or Path(cf.path).suffix.lower() in PROJECT_SHARED_EXTENSIONS
                 ):
-                    # The general document pipeline also claims these formats; inside
-                    # a project the project parser owns them, because a spreadsheet is
-                    # read here as cells and formulas rather than a rendered page.
-                    get_parser = getattr(registry, "get_parser", None)
-                    project_parser = get_parser("matlab") if get_parser else None
-                    if project_parser is not None:
-                        native_parser = project_parser
+                    # Every format the project parser reads belongs to it, including
+                    # the spreadsheet the general document pipeline also claims: a
+                    # workbook is read here as cells and formulas, not as a page.
+                    native_parser = project_parser
                 if scan_result.matlab_project and cf.summary and cf.summary != SUMMARY_PARSE:
                     # The classification table owns the summary strategy: these
                     # files are stored as the original bytes, not as parsed pages.

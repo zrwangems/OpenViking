@@ -10,7 +10,6 @@ from openviking.parse.directory_scan import scan_directory
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab.ignore import (
     detect_build_folders,
-    looks_like_matlab_project,
     matlab_ignore_for,
     project_resources_index,
 )
@@ -114,13 +113,19 @@ def test_reset_drops_previous_folders(tmp_path: Path):
     assert detect_build_folders(tmp_path) == ()
 
 
-def test_matlab_project_detection_needs_a_model_not_just_m_files(tmp_path: Path):
+def test_declaring_matlab_is_what_turns_the_rules_on(tmp_path: Path):
+    """Nothing inspects the tree: the flag decides, not the files in it."""
     write(tmp_path, "main.m")
     write(tmp_path, "notes.mat", "data")
-    assert not looks_like_matlab_project(tmp_path)
+    write(tmp_path, "slprj/ert/Plant/Plant.c")
 
-    (tmp_path / "Plant.slx").write_bytes(b"PK\x03\x04")
-    assert looks_like_matlab_project(tmp_path)
+    ordinary = scan_directory(tmp_path)
+    declared = scan_directory(tmp_path, matlab_project=True)
+
+    assert "slprj/ert/Plant/Plant.c" in [entry.rel_path for entry in ordinary.processable]
+    assert [entry.rel_path for entry in declared.processable] == ["main.m", "notes.mat"]
+    assert ordinary.matlab_project is False
+    assert declared.matlab_project is True
 
 
 def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
@@ -136,7 +141,7 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     write(tmp_path, "Plant.slx.autosave")
     write(tmp_path, "old_script.asv")
 
-    result = scan_directory(tmp_path, strict=True)
+    result = scan_directory(tmp_path, strict=True, matlab_project=True)
 
     assert [entry.rel_path for entry in result.processable] == [
         "Plant.sldd",
@@ -161,7 +166,8 @@ def test_scan_skips_build_cache_and_custom_folders(tmp_path: Path):
     assert all("matlab build/cache" in entry for entry in result.skipped)
 
 
-def test_non_matlab_project_keeps_codegen_but_drops_rtw(tmp_path: Path):
+def test_undeclared_directory_keeps_generated_folders(tmp_path: Path):
+    """Without the declaration a Simulink-shaped tree is an ordinary directory."""
     write(tmp_path, "README.md", "# project")
     write(tmp_path, "codegen/app.py", "print(1)")
     write(tmp_path, "driver_rtw/notes.md", "notes")
@@ -171,25 +177,28 @@ def test_non_matlab_project_keeps_codegen_but_drops_rtw(tmp_path: Path):
     assert [entry.rel_path for entry in result.processable] == [
         "README.md",
         "codegen/app.py",
+        "driver_rtw/notes.md",
     ]
-    assert "driver_rtw (matlab build/cache)" in result.skipped
+    assert result.skipped == []
+    assert result.matlab_project is False
 
 
-def test_default_build_folders_are_skipped_at_any_depth_without_a_model(tmp_path: Path):
+def test_undeclared_cache_names_are_not_skipped_at_any_depth(tmp_path: Path):
     write(tmp_path, "docs/readme.md", "# project")
     write(tmp_path, "a/b/c/slprj/ert/Plant/Plant.c")
     write(tmp_path, "a/b/c/Plant_ert_rtw/Plant.h")
-    write(tmp_path, "a/b/c/model.slxc")
+    (tmp_path / "a/b/c/model.slxc").write_bytes(b"cache")
 
-    result = scan_directory(tmp_path, strict=True)
+    result = scan_directory(tmp_path)
 
-    assert [entry.rel_path for entry in result.processable] == ["docs/readme.md"]
-    skipped = {entry.split(" (")[0] for entry in result.skipped}
-    assert skipped == {
-        "a/b/c/slprj",
-        "a/b/c/Plant_ert_rtw",
-        "a/b/c/model.slxc",
-    }
+    assert [entry.rel_path for entry in result.processable] == [
+        "a/b/c/Plant_ert_rtw/Plant.h",
+        "a/b/c/slprj/ert/Plant/Plant.c",
+        "docs/readme.md",
+    ]
+    # The cache file is just an unknown binary here, not a derived artifact.
+    assert [entry.rel_path for entry in result.unsupported] == ["a/b/c/model.slxc"]
+    assert result.skipped == []
 
 
 def test_codegen_and_custom_folders_at_any_depth_in_matlab_project(tmp_path: Path):
@@ -205,7 +214,7 @@ def test_codegen_and_custom_folders_at_any_depth_in_matlab_project(tmp_path: Pat
     write(tmp_path, "deep/a/build/cache/slprj/ert/Plant/Plant.c")
     write(tmp_path, "deep/a/other/build/cache/model.slxc")
 
-    result = scan_directory(tmp_path, strict=True)
+    result = scan_directory(tmp_path, strict=True, matlab_project=True)
 
     assert [entry.rel_path for entry in result.processable] == [
         "Plant.slx",
@@ -224,14 +233,14 @@ def test_scan_keeps_unrelated_folder_with_similar_name(tmp_path: Path):
     write(tmp_path, "DriveCycle/data.csv", "a,b\n1,2\n")
     write(tmp_path, "Results/summary.md", "# result")
 
-    result = scan_directory(tmp_path)
+    result = scan_directory(tmp_path, matlab_project=True)
 
     assert "DriveCycle/data.csv" in [entry.rel_path for entry in result.processable]
     assert "Results/summary.md" in [entry.rel_path for entry in result.processable]
 
 
 def test_whole_sample_project_still_imports_every_source_file(tmp_path: Path):
-    result = scan_directory(SAMPLE, strict=True)
+    result = scan_directory(SAMPLE, strict=True, matlab_project=True)
 
     processable = [entry.rel_path for entry in result.processable]
     duplicates = [entry.rel_path for entry in result.duplicates]
@@ -290,7 +299,7 @@ def test_default_build_folder_names_are_skipped(tmp_path: Path, folder: str):
     make_matlab_project(tmp_path)
     write(tmp_path, f"{folder}/generated.c")
 
-    result = scan_directory(tmp_path)
+    result = scan_directory(tmp_path, matlab_project=True)
 
     assert f"{folder}/generated.c" not in [entry.rel_path for entry in result.processable]
     assert any(entry.startswith(f"{folder}/generated.c ") for entry in result.skipped)
