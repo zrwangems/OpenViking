@@ -1835,8 +1835,10 @@ async def add_resource(
             for a new target. Omit to preserve existing ACL or inherit on creation.
         args: Parser-specific options, e.g. {"auth_config": {"token": "..."}}
             for native HTTPS Git imports and watches, {"feishu_access_token": "..."}
-            for Feishu imports, {"site": true} for whole-site ingestion, or
-            {"parse_mode": "no_split"} to keep each parsed document body in one file.
+            for Feishu imports, {"site": true} for whole-site ingestion,
+            {"parse_mode": "no_split"} to keep each parsed document body in one file,
+            or {"matlab": true} to import a directory as a MATLAB/Simulink project
+            (nothing is detected without it).
     """
     from openviking.server.local_input_guard import require_remote_resource_source
 
